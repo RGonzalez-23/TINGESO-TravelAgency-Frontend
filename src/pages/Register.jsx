@@ -51,12 +51,33 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      // Registrar usuario
-      console.log('Formulario válido', formData);
-      alert('¡Registro exitoso!');
+      try {
+        const response = await fetch('http://localhost:8090/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          alert('¡Registro exitoso! Ya puedes iniciar sesión.');
+          setFormData({
+            nombres: '', apellidoPaterno: '', apellidoMaterno: '', email: '',
+            password: '', phone: '', rut: '', nacionalidad: ''
+          });
+        } else {
+          // Capturar el error arrojado por el backend (ej. "El correo ya existe")
+          const errorMsg = await response.text();
+          setErrors({ form: errorMsg || 'Error al registrar' });
+        }
+      } catch (err) {
+        setErrors({ form: 'Error de conexión con el servidor' });
+      }
     }
   };
 
@@ -67,6 +88,8 @@ const Register = () => {
           <h1>Únete a <span className="text-gradient">Nosotros</span></h1>
           <p>Crea tu cuenta para empezar a viajar</p>
         </div>
+        
+        {errors.form && <div className="error-message" style={{color: '#ff4d4d', marginBottom: '1rem', textAlign: 'center', fontWeight: 'bold'}}>{errors.form}</div>}
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
