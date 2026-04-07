@@ -6,6 +6,7 @@ import Packages from './pages/Packages';
 import PackageDetails from './pages/PackageDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AdminPackages from './pages/AdminPackages';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/packages/:id" element={<PackageDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin/packages" element={<AdminPackages />} />
         </Routes>
       </main>
       <Footer />
