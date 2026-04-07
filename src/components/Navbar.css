@@ -3,13 +3,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 100;
   padding: 1.5rem 0;
   transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-  padding: 1rem 0;
+  margin: 6rem auto 2rem;
   border-bottom: 1px solid var(--glass-border);
 }
 
