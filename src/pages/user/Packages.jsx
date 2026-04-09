@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import PackageCard from '../components/PackageCard';
-import { PACKAGES } from '../data/mockData';
+import PackageCard from '../../components/PackageCard';
+import { PACKAGES } from '../../data/mockData';
 import { Search, Filter } from 'lucide-react';
-import './Packages.css';
+import './  css/Packages.css';
 
 const Packages = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredPackages = PACKAGES.filter(pkg => 
-    pkg.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+  const filteredPackages = PACKAGES.filter(pkg =>
+    pkg.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     pkg.destination.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -22,9 +22,9 @@ const Packages = () => {
       <div className="filters-bar glass">
         <div className="search-input-group">
           <Search size={20} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Buscar por destino o título..." 
+          <input
+            type="text"
+            placeholder="Buscar por destino o título..."
             className="search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

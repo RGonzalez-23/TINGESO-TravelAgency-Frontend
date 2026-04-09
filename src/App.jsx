@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Packages from './pages/Packages';
-import PackageDetails from './pages/PackageDetails';
+import Packages from './pages/user/Packages';
+import PackageDetails from './pages/user/PackageDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import AdminPackages from './pages/AdminPackages';
+import AdminPackages from './pages/admin/AdminPackages';
 import './App.css';
 
 function App() {

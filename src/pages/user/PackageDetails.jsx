@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { PACKAGES } from '../data/mockData';
+import { PACKAGES } from '../../data/mockData';
 import { MapPin, Calendar, Users, Star, ArrowLeft, CheckCircle2 } from 'lucide-react';
-import './PackageDetails.css';
+import './css/PackageDetails.css';
 
 const PackageDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const pkg = PACKAGES.find(p => p.id === parseInt(id));
 
   if (!pkg) {
@@ -40,10 +40,10 @@ const PackageDetails = () => {
         <div className="details-main text-muted">
           <h2>Descripción</h2>
           <p>{pkg.description}</p>
-          <br/>
+          <br />
           <p>
-            Prepárate para una aventura inolvidable con nuestro paquete de {pkg.duration}. Explorarás {pkg.destination} 
-            disfrutando de las comodidades y lujos que solo nosotros ofrecemos. Este es el paquete perfecto 
+            Prepárate para una aventura inolvidable con nuestro paquete de {pkg.duration}. Explorarás {pkg.destination}
+            disfrutando de las comodidades y lujos que solo nosotros ofrecemos. Este es el paquete perfecto
             para quienes buscan desconectar y sumergirse en una nueva cultura y paisajes deslumbrantes.
           </p>
 
@@ -65,7 +65,7 @@ const PackageDetails = () => {
               <h3>{pkg.price} €</h3>
               <span>por persona</span>
             </div>
-            
+
             <div className="booking-features">
               <div className="feature-row">
                 <MapPin size={18} className="text-muted" />

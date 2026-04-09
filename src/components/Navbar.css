@@ -1,5 +1,4 @@
 .navbar {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,7 +45,8 @@
   position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   opacity: 1;
   color: #fff;
 }
@@ -62,7 +62,8 @@
   transition: width 0.3s ease;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
@@ -78,7 +79,7 @@
   .mobile-toggle {
     display: block;
   }
-  
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -90,7 +91,7 @@
     clip-path: circle(0% at top right);
     transition: clip-path 0.4s ease-out;
   }
-  
+
   .nav-links.open {
     clip-path: circle(150% at top right);
     border-top: 1px solid var(--glass-border);
