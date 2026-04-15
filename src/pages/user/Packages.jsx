@@ -37,7 +37,7 @@ const Packages = () => {
         }
       });
 
-      const response = await fetch(`http://localhost:8090/api/packages/search?${params.toString()}`);
+      const response = await fetch(`/api/packages/search?${params.toString()}`);
       if (response.ok) {
         const data = await response.json();
         setPackages(data);

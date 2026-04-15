@@ -40,7 +40,7 @@ const AdminPackages = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await fetch('http://localhost:8090/api/packages');
+      const response = await fetch('/api/packages');
       const data = await response.json();
       setPackages(data);
       setLoading(false);
@@ -90,8 +90,8 @@ const AdminPackages = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isEditing 
-        ? `http://localhost:8090/api/packages/${currentId}` 
-        : 'http://localhost:8090/api/packages';
+        ? `/api/packages/${currentId}` 
+        : '/api/packages';
     
     const method = isEditing ? 'PUT' : 'POST';
 

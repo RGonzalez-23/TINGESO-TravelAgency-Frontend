@@ -12,7 +12,7 @@ const PackageDetails = () => {
   useEffect(() => {
     const fetchPackageDetail = async () => {
       try {
-        const response = await fetch(`http://localhost:8090/api/packages/${id}`);
+        const response = await fetch(`/api/packages/${id}`);
         if(response.ok) {
             const data = await response.json();
             setPkg(data);
