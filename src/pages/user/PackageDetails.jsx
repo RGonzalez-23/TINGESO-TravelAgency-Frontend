@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useKeycloak } from '@react-keycloak/web';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Calendar, Users, Star, ArrowLeft, CheckCircle2, AlertTriangle } from 'lucide-react';
 import './css/PackageDetails.css';
@@ -42,6 +43,22 @@ const PackageDetails = () => {
   }
 
   const isSoldOut = pkg.status === 'AGOTADO';
+
+  const { keycloak, initialized } = useKeycloak();
+
+  const handleReserve = () => {
+    if (!keycloak?.authenticated) {
+      alert('Debe iniciar sesión para continuar con su reserva');
+      keycloak?.login();
+      return;
+    }
+    const tokenRoles = keycloak?.tokenParsed?.realm_access?.roles || [];
+    if (tokenRoles.includes('CLIENTE')) {
+      alert('Procediendo a flujo de reserva (simulado).');
+      return;
+    }
+    alert('Solo usuarios con rol CLIENTE pueden reservar.');
+  };
 
   return (
     <div className="package-details container fade-in-up" style={{ marginTop: '5rem' }}>
@@ -124,7 +141,7 @@ const PackageDetails = () => {
             <button 
                 className={`button w-full ${isSoldOut ? 'button-secondary' : 'button-primary pulse-animation'}`}
                 disabled={isSoldOut}
-                onClick={() => alert("¡Próximamente! Redirigiendo al flujo de Reserva (Épica 4)")}
+                onClick={handleReserve}
             >
               {isSoldOut ? 'No Disponible para Reservar' : 'Reservar Ahora'}
             </button>

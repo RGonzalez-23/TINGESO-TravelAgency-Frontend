@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import PackageCard from '../../components/PackageCard';
 import { Search, Filter, X } from 'lucide-react';
+import { useKeycloak } from '@react-keycloak/web';
+import { Link } from 'react-router-dom';
 import './css/Packages.css';
 
 const Packages = () => {
@@ -26,6 +28,9 @@ const Packages = () => {
     fetchPackages(filters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const { keycloak, initialized } = useKeycloak();
+  const isAdmin = initialized && keycloak && ((keycloak.hasRealmRole && keycloak.hasRealmRole('ADMIN')) || (keycloak.tokenParsed?.realm_access?.roles || []).includes('ADMIN'));
 
   const fetchPackages = async (currentFilters) => {
     setLoading(true);
@@ -71,10 +76,17 @@ const Packages = () => {
 
   return (
     <div className="packages-page container fade-in-up">
-      <header className="packages-header" style={{ marginTop: '5rem' }}>
-        <h1>Encuentra tu próximo <span className="text-gradient">Destino</span></h1>
-        <p className="subtitle">Explora los mejores paquetes turísticos</p>
-      </header>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '5rem' }}>
+        <header className="packages-header">
+          <h1>Encuentra tu próximo <span className="text-gradient">Destino</span></h1>
+          <p className="subtitle">Explora los mejores paquetes turísticos</p>
+        </header>
+        {isAdmin && (
+          <div style={{ marginLeft: '1rem' }}>
+            <Link to="/admin/packages" className="button button-outline">Administrar Paquetes</Link>
+          </div>
+        )}
+      </div>
 
       {/* Barra de bśsqueda general */}
       <form className="filters-bar glass" onSubmit={handleSearch}>

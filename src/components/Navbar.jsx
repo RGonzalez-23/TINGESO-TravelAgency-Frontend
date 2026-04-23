@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Compass, Menu, X } from 'lucide-react';
+import { useKeycloak } from '@react-keycloak/web';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { keycloak, initialized } = useKeycloak();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,23 @@ const Navbar = () => {
           <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Inicio</Link>
           <Link to="/packages" className={`nav-link ${location.pathname.startsWith('/packages') ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Paquetes</Link>
           <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>Nosotros</a>
-          <Link to="/login" className="button button-primary nav-cta" onClick={() => setIsOpen(false)}>Iniciar Sesión</Link>
+          {initialized && keycloak && (keycloak.tokenParsed?.realm_access?.roles || []).includes('ADMIN') && (
+            <Link to="/admin/packages" className="button button-outline nav-cta" onClick={() => setIsOpen(false)}>Administrar</Link>
+          )}
+          {!initialized || !keycloak || !keycloak.authenticated ? (
+            <>
+              <button className="button button-outline nav-cta" onClick={() => keycloak?.register()}>
+                Crear Cuenta
+              </button>
+              <button className="button button-primary nav-cta" onClick={() => keycloak?.login()}>
+                Iniciar Sesión
+              </button>
+            </>
+          ) : (
+            <button className="button button-secondary nav-cta" onClick={() => keycloak?.logout()}>
+              Salir
+            </button>
+          )}
         </div>
 
         <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
