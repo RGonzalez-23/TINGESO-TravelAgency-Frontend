@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './AdminPackages.css';
+import api from '../../http-common';
 
 const AdminPackages = () => {
   const [packages, setPackages] = useState([]);
@@ -40,9 +41,8 @@ const AdminPackages = () => {
 
   const fetchPackages = async () => {
     try {
-      const response = await fetch('/api/packages');
-      const data = await response.json();
-      setPackages(data);
+      const response = await api.get('/api/packages');
+      setPackages(response.data);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching packages:', error);
@@ -89,29 +89,19 @@ const AdminPackages = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isEditing 
-        ? `/api/packages/${currentId}` 
-        : '/api/packages';
-    
-    const method = isEditing ? 'PUT' : 'POST';
-
     try {
-      const response = await fetch(url, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-
-      if (response.ok) {
-        alert(isEditing ? '¡Paquete actualizado!' : '¡Paquete creado!');
-        setIsModalOpen(false);
-        fetchPackages();
+      if (isEditing) {
+        await api.put(`/api/packages/${currentId}`, formData);
       } else {
-        const error = await response.text();
-        alert('Error: ' + error);
+        await api.post('/api/packages', formData);
       }
+
+      alert(isEditing ? '¡Paquete actualizado!' : '¡Paquete creado!');
+      setIsModalOpen(false);
+      fetchPackages();
     } catch (error) {
-      alert('Error de conexión con el servidor');
+      const message = error?.response?.data?.message || error?.response?.data || 'Error de conexión con el servidor';
+      alert(`Error: ${message}`);
     }
   };
 

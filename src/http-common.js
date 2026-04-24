@@ -3,12 +3,11 @@ import keycloak from "./services/keycloak";
 
 const travelBackendServer = import.meta.env.VITE_TRAVEL_BACKEND_SERVER;
 const travelBackendPort = import.meta.env.VITE_TRAVEL_BACKEND_PORT;
-
-console.log(travelBackendServer)
-console.log(travelBackendPort)
+const apiHost = travelBackendServer || "localhost";
+const apiPort = travelBackendPort || "8090";
 
 const api = axios.create({
-  baseURL: `http://${travelBackendServer}:${travelBackendPort}`,
+  baseURL: `http://${apiHost}:${apiPort}`,
   headers: {
     "Content-Type": "application/json"
   }

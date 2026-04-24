@@ -2,24 +2,21 @@ import { useEffect, useState } from 'react';
 import { useKeycloak } from '@react-keycloak/web';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Calendar, Users, Star, ArrowLeft, CheckCircle2, AlertTriangle } from 'lucide-react';
+import api from '../../http-common';
 import './css/PackageDetails.css';
 
 const PackageDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { keycloak } = useKeycloak();
   const [pkg, setPkg] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPackageDetail = async () => {
       try {
-        const response = await fetch(`/api/packages/${id}`);
-        if(response.ok) {
-            const data = await response.json();
-            setPkg(data);
-        } else {
-            console.error("Paquete no encontrado");
-        }
+        const response = await api.get(`/api/packages/${id}`);
+        setPkg(response.data);
       } catch (error) {
         console.error("Error connecting to backend", error);
       } finally {
@@ -43,8 +40,6 @@ const PackageDetails = () => {
   }
 
   const isSoldOut = pkg.status === 'AGOTADO';
-
-  const { keycloak, initialized } = useKeycloak();
 
   const handleReserve = () => {
     if (!keycloak?.authenticated) {

@@ -3,6 +3,7 @@ import PackageCard from '../../components/PackageCard';
 import { Search, Filter, X } from 'lucide-react';
 import { useKeycloak } from '@react-keycloak/web';
 import { Link } from 'react-router-dom';
+import api from '../../http-common';
 import './css/Packages.css';
 
 const Packages = () => {
@@ -42,11 +43,8 @@ const Packages = () => {
         }
       });
 
-      const response = await fetch(`/api/packages/search?${params.toString()}`);
-      if (response.ok) {
-        const data = await response.json();
-        setPackages(data);
-      }
+      const response = await api.get(`/api/packages/search?${params.toString()}`);
+      setPackages(response.data);
     } catch (error) {
       console.error("Error obteniendo paquetes:", error);
     } finally {
