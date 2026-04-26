@@ -1,11 +1,16 @@
 import { ArrowRight, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
 import PackageCard from '../components/PackageCard';
 import { PACKAGES } from '../data/mockData';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { keycloak, initialized } = useKeycloak();
+
+  const isClient = initialized && keycloak?.authenticated && (keycloak.tokenParsed?.realm_access?.roles || []).includes('CLIENTE');
+  const firstName = keycloak?.tokenParsed?.given_name || keycloak?.tokenParsed?.preferred_username || "Explorador";
 
   return (
     <>
@@ -13,12 +18,17 @@ const Home = () => {
         <div className="hero-overlay"></div>
         <div className="container hero-container">
           <div className="hero-content fade-in-up">
-            <h1 className="hero-title">
-              Descubre Tu Próxima <br/>
-              <span className="text-gradient">Gran Aventura</span>
+            <h1 className="hero-title" style={{ fontSize: isClient ? '4rem' : undefined, textTransform: isClient ? 'uppercase' : 'none' }}>
+              {isClient ? (
+                  <>HOLA, <span className="text-gradient">{firstName}</span></>
+              ) : (
+                  <>Descubre Tu Próxima <br/><span className="text-gradient">Gran Aventura</span></>
+              )}
             </h1>
             <p className="hero-subtitle">
-              Reserva paquetes turísticos exclusivos con alojamiento, vuelos y experiencias únicas diseñadas solo para ti.
+              {isClient 
+                ? 'El mundo te espera. Comienza a planear tu próxima aventura perfecta revisando nuestros paquetes disponibles para ti.'
+                : 'Reserva paquetes turísticos exclusivos con alojamiento, vuelos y experiencias únicas diseñadas solo para ti.'}
             </p>
             
             <div className="search-bar glass">

@@ -27,7 +27,9 @@ const Navbar = () => {
         </Link>
         
         <div className={`nav-links ${isOpen ? 'open glass' : ''}`}>
-          <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Inicio</Link>
+          {(!initialized || !keycloak || !keycloak.authenticated || !(keycloak.tokenParsed?.realm_access?.roles || []).includes('ADMIN')) && (
+              <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Inicio</Link>
+          )}
           <Link to="/packages" className={`nav-link ${location.pathname.startsWith('/packages') ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Paquetes</Link>
           <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>Nosotros</a>
           {initialized && keycloak && (keycloak.tokenParsed?.realm_access?.roles || []).includes('CLIENTE') && (

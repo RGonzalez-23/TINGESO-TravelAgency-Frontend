@@ -35,7 +35,6 @@ function HomeWrapper() {
   if (!keycloak?.authenticated) return <Home />;
   const tokenRoles = keycloak?.tokenParsed?.realm_access?.roles || [];
   if (tokenRoles.includes('ADMIN')) return <Navigate to="/admin/dashboard" replace />;
-  if (tokenRoles.includes('CLIENTE')) return <Navigate to="/packages" replace />;
   return <Home />;
 }
 
