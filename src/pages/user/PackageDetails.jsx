@@ -49,7 +49,7 @@ const PackageDetails = () => {
     }
     const tokenRoles = keycloak?.tokenParsed?.realm_access?.roles || [];
     if (tokenRoles.includes('CLIENTE')) {
-      alert('Procediendo a flujo de reserva (simulado).');
+      navigate(`/packages/${id}/book`);
       return;
     }
     alert('Solo usuarios con rol CLIENTE pueden reservar.');

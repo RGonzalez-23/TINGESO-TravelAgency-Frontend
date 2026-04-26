@@ -6,6 +6,11 @@ import Home from './pages/Home';
 import Packages from './pages/user/Packages';
 import PackageDetails from './pages/user/PackageDetails';
 import AdminPackages from './pages/admin/AdminPackages';
+import BookPackage from './pages/user/BookPackage';
+import Checkout from './pages/user/Checkout';
+import MyReservations from './pages/user/MyReservations';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminConfig from './pages/admin/AdminConfig';
 import './App.css';
 
 function RequireRole({ children, roles = [] }) {
@@ -29,7 +34,7 @@ function HomeWrapper() {
   if (!initialized) return null;
   if (!keycloak?.authenticated) return <Home />;
   const tokenRoles = keycloak?.tokenParsed?.realm_access?.roles || [];
-  if (tokenRoles.includes('ADMIN')) return <Navigate to="/admin/packages" replace />;
+  if (tokenRoles.includes('ADMIN')) return <Navigate to="/admin/dashboard" replace />;
   if (tokenRoles.includes('CLIENTE')) return <Navigate to="/packages" replace />;
   return <Home />;
 }
@@ -43,7 +48,12 @@ function App() {
           <Route path="/" element={<HomeWrapper />} />
           <Route path="/packages" element={<Packages />} />
           <Route path="/packages/:id" element={<PackageDetails />} />
+          <Route path="/packages/:id/book" element={<RequireRole roles={["CLIENTE"]}><BookPackage /></RequireRole>} />
+          <Route path="/checkout/:id" element={<RequireRole roles={["CLIENTE"]}><Checkout /></RequireRole>} />
+          <Route path="/my-reservations" element={<RequireRole roles={["CLIENTE"]}><MyReservations /></RequireRole>} />
+          <Route path="/admin/dashboard" element={<RequireRole roles={["ADMIN"]}><AdminDashboard /></RequireRole>} />
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />
+          <Route path="/admin/discounts" element={<RequireRole roles={["ADMIN"]}><AdminConfig /></RequireRole>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

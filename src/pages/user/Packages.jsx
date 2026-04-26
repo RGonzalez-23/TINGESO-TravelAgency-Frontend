@@ -10,7 +10,7 @@ const Packages = () => {
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const [filters, setFilters] = useState({
     destination: '',
     minPrice: '',
@@ -19,7 +19,8 @@ const Packages = () => {
     dateTo: '',
     category: '',
     minDuration: '',
-    maxDuration: ''
+    maxDuration: '',
+    tripType: ''
   });
 
   const categories = ['AVENTURA', 'RELAX', 'CULTURAL', 'FAMILIAR', 'ROMANTICO', 'NEGOCIOS', 'DEPORTIVO'];
@@ -66,7 +67,7 @@ const Packages = () => {
     const emptyFilters = {
       destination: '', minPrice: '', maxPrice: '',
       dateFrom: '', dateTo: '', category: '',
-      minDuration: '', maxDuration: ''
+      minDuration: '', maxDuration: '', tripType: ''
     };
     setFilters(emptyFilters);
     fetchPackages(emptyFilters);
@@ -108,12 +109,12 @@ const Packages = () => {
       {/* Panel de filtros avanzados (Acordeón) */}
       {showFilters && (
         <div className="advanced-filters glass fade-in" style={{ padding: '2rem', marginTop: '1rem', borderRadius: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
-          
+
           <div className="filter-group">
             <label>Precio Mínimo (CLP)</label>
             <input type="number" name="minPrice" className="form-input" value={filters.minPrice} onChange={handleInputChange} placeholder="0" />
           </div>
-          
+
           <div className="filter-group">
             <label>Precio Máximo (CLP)</label>
             <input type="number" name="maxPrice" className="form-input" value={filters.maxPrice} onChange={handleInputChange} placeholder="9000000" />
@@ -133,7 +134,7 @@ const Packages = () => {
             <label>Duración Mín. (Días)</label>
             <input type="number" name="minDuration" className="form-input" value={filters.minDuration} onChange={handleInputChange} placeholder="0" />
           </div>
-          
+
           <div className="filter-group">
             <label>Duración Máx. (Días)</label>
             <input type="number" name="maxDuration" className="form-input" value={filters.maxDuration} onChange={handleInputChange} placeholder="30" />
@@ -144,6 +145,15 @@ const Packages = () => {
             <select name="category" className="form-input" value={filters.category} onChange={handleInputChange}>
               <option value="">Cualquiera</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label>Tipo de Viaje</label>
+            <select name="tripType" className="form-input" value={filters.tripType} onChange={handleInputChange}>
+              <option value="">Cualquiera</option>
+              <option value="NACIONAL">Nacional</option>
+              <option value="INTERNACIONAL">Internacional</option>
             </select>
           </div>
 
@@ -158,7 +168,7 @@ const Packages = () => {
       {/* Rejilla de Paquetes */}
       {loading ? (
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <h3>Buscando aventuras...</h3>
+          <h3>Buscando aventuras...</h3>
         </div>
       ) : (
         <div className="packages-grid" style={{ marginTop: '3rem' }}>

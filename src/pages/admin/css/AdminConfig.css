@@ -1,0 +1,77 @@
+.admin-config-container {
+    margin-top: 5rem;
+    padding-bottom: 5rem;
+}
+.admin-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1e293b;
+}
+.header-icon {
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+}
+.config-form {
+    padding: 3rem;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.config-card {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+.config-card.featured-card {
+    background: #eff6ff;
+    border-color: #bfdbfe;
+    grid-column: 1 / -1;
+}
+.config-card h3 {
+    margin-top: 0;
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+.config-card label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #475569;
+}
+.config-card input[type="number"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 1.1rem;
+}
+.toggle-switch {
+    margin-top: 1rem;
+}
+.toggle-switch label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.1rem;
+    color: #1e293b;
+    cursor: pointer;
+}
+.toggle-switch input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.config-actions {
+    text-align: center;
+    margin-top: 3rem;
+}
