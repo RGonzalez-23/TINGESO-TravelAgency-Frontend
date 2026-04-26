@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './AdminPackages.css';
+import './css/AdminPackages.css';
 import api from '../../http-common';
 
 const AdminPackages = () => {
@@ -53,10 +53,10 @@ const AdminPackages = () => {
   const handleOpenCreate = () => {
     setIsEditing(false);
     setFormData({
-        name: '', destination: '', description: '', startDate: '', endDate: '',
-        price: 0, totalSlots: 0, includedServices: [], conditions: '',
-        restrictions: '', tripType: 'NACIONAL', season: 'ALTA',
-        category: 'AVENTURA', status: 'DISPONIBLE', isVisible: true
+      name: '', destination: '', description: '', startDate: '', endDate: '',
+      price: 0, totalSlots: 0, includedServices: [], conditions: '',
+      restrictions: '', tripType: 'NACIONAL', season: 'ALTA',
+      category: 'AVENTURA', status: 'DISPONIBLE', isVisible: true
     });
     setIsModalOpen(true);
   };
@@ -164,15 +164,15 @@ const AdminPackages = () => {
                   <label>Nombre del Paquete</label>
                   <input className="form-input" name="name" value={formData.name} onChange={handleInputChange} required />
                 </div>
-                
+
                 <div className="form-group">
                   <label>Destino</label>
                   <input className="form-input" name="destination" value={formData.destination} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                    <label>Precio (CLP)</label>
-                    <input className="form-input" type="number" name="price" value={formData.price} onChange={handleInputChange} required />
+                  <label>Precio (CLP)</label>
+                  <input className="form-input" type="number" name="price" value={formData.price} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
@@ -221,8 +221,8 @@ const AdminPackages = () => {
                   <div className="services-selection">
                     {availableServices.map(service => (
                       <label key={service} className="service-item">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={formData.includedServices.includes(service)}
                           onChange={() => handleServiceChange(service)}
                         />
