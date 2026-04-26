@@ -8,6 +8,7 @@ import PackageDetails from './pages/user/PackageDetails';
 import AdminPackages from './pages/admin/AdminPackages';
 import BookPackage from './pages/user/BookPackage';
 import Checkout from './pages/user/Checkout';
+import PaymentSuccess from './pages/user/PaymentSuccess';
 import MyReservations from './pages/user/MyReservations';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminConfig from './pages/admin/AdminConfig';
@@ -49,6 +50,7 @@ function App() {
           <Route path="/packages/:id" element={<PackageDetails />} />
           <Route path="/packages/:id/book" element={<RequireRole roles={["CLIENTE"]}><BookPackage /></RequireRole>} />
           <Route path="/checkout/:id" element={<RequireRole roles={["CLIENTE"]}><Checkout /></RequireRole>} />
+          <Route path="/checkout/success/:id" element={<RequireRole roles={["CLIENTE"]}><PaymentSuccess /></RequireRole>} />
           <Route path="/my-reservations" element={<RequireRole roles={["CLIENTE"]}><MyReservations /></RequireRole>} />
           <Route path="/admin/dashboard" element={<RequireRole roles={["ADMIN"]}><AdminDashboard /></RequireRole>} />
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />

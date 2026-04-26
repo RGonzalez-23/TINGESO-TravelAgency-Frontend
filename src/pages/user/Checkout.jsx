@@ -8,12 +8,25 @@ const Checkout = () => {
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
-    
+
     // Obtenemos la reserva devuelta por POST /api/reservations (El state de React Router)
     const [reservation, setReservation] = useState(location.state?.reservation || null);
     const [timeLeft, setTimeLeft] = useState(180); // 3 minutos = 180 segundos
     const [expired, setExpired] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    // Gateway Mock State
+    const [cardData, setCardData] = useState({
+        cardHolderName: '',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '',
+        paymentMethod: 'CREDIT_CARD'
+    });
+
+    const handleInput = (e) => {
+        setCardData({ ...cardData, [e.target.name]: e.target.value });
+    };
 
     useEffect(() => {
         // En producción se buscaría al backend si no existe en local, 
@@ -42,11 +55,16 @@ const Checkout = () => {
     }, [reservation, expired]);
 
     const handlePayment = async () => {
+        // Validation required by Epic 5
+        if (cardData.cardNumber.length !== 16) return alert("Formato de número de tarjeta inválido (requiere 16 dígitos)");
+        if (cardData.cvv.length !== 3) return alert("CVV inválido (requiere 3 dígitos)");
+        if (!cardData.cardHolderName || !cardData.expiryDate) return alert("Debe completar todos los datos para pagar");
+
         setLoading(true);
         try {
-            await api.post(`/api/reservations/${id}/pay`);
-            alert('¡Pago existoso! Reserva confirmada.');
-            navigate('/my-reservations');
+            // El backend recibe el payload, simula validación y guarda transacción devolviendo el voucher
+            const response = await api.post(`/api/reservations/${id}/pay`, cardData);
+            navigate(`/checkout/success/${id}`, { state: { receipt: response.data } });
         } catch (err) {
             alert('Error al procesar el pago: ' + (err.response?.data || err.message));
         } finally {
@@ -95,17 +113,17 @@ const Checkout = () => {
                             <span>Pasajeros Adjudicados:</span>
                             <strong>{reservation.passengersCount} cupos reservados temporalmente</strong>
                         </div>
-                        
+
                         <hr className="divider" />
 
                         <div className="invoice-row">
                             <span>Subtotal (Precio Base Original):</span>
                             <span className="price-strike">${reservation.totalAmount.toLocaleString('es-CL')}</span>
                         </div>
-                        
+
                         {reservation.discountPercentage > 0 && (
                             <div className="invoice-row discount-row">
-                                <span>Descuentos ({reservation.discountPercentage}% off):<br/><small>{reservation.appliedDiscountsDetails}</small></span>
+                                <span>Descuentos ({reservation.discountPercentage}% off):<br /><small>{reservation.appliedDiscountsDetails}</small></span>
                                 <strong>- ${(reservation.totalAmount - reservation.finalAmount).toLocaleString('es-CL')}</strong>
                             </div>
                         )}
@@ -117,12 +135,45 @@ const Checkout = () => {
                             <span className="gradient-text">${reservation.finalAmount.toLocaleString('es-CL')} CLP</span>
                         </div>
 
-                        <button 
-                            className="button button-primary huge-btn pay-btn" 
-                            onClick={handlePayment} 
+                        <div className="payment-gateway-form" style={{ marginTop: '2rem', marginBottom: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1e293b' }}>Datos de Tarjeta (Medio Simulado)</h3>
+
+                            <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Medio de Pago</label>
+                                <select className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="paymentMethod" value={cardData.paymentMethod} onChange={handleInput}>
+                                    <option value="CREDIT_CARD">Tarjeta de Crédito</option>
+                                    <option value="DEBIT_CARD">Tarjeta de Débito</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Nombre del Titular</label>
+                                <input type="text" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="cardHolderName" placeholder="Ej. Juan Pérez" value={cardData.cardHolderName} onChange={handleInput} required />
+                            </div>
+
+                            <div className="form-group" style={{ marginBottom: '1rem' }}>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Número de Tarjeta (16 dígitos)</label>
+                                <input type="text" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc', letterSpacing: '2px' }} name="cardNumber" maxLength="16" placeholder="0000 0000 0000 0000" value={cardData.cardNumber} onChange={handleInput} required />
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '1rem' }}>
+                                <div className="form-group" style={{ flex: 1 }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Expiración</label>
+                                    <input type="text" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="expiryDate" placeholder="12/28" value={cardData.expiryDate} onChange={handleInput} required />
+                                </div>
+                                <div className="form-group" style={{ flex: 1 }}>
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>CVV</label>
+                                    <input type="password" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="cvv" maxLength="3" placeholder="***" value={cardData.cvv} onChange={handleInput} required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button
+                            className="button button-primary huge-btn pay-btn"
+                            onClick={handlePayment}
                             disabled={loading || expired}
                         >
-                            {loading ? 'Procesando Pago Seguro (Simulado)...' : 'Simular Pago (Confirmar Orden)'}
+                            {loading ? 'Procesando Transacción cifrada...' : 'PAGAR DE FORMA SEGURA'}
                         </button>
                     </div>
                 )}

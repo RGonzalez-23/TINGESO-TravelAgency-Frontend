@@ -27,7 +27,7 @@ const PackageDetails = () => {
   }, [id]);
 
   if (loading) {
-      return <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}><h3>Cargando información del paquete en tiempo real...</h3></div>;
+    return <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}><h3>Cargando información del paquete en tiempo real...</h3></div>;
   }
 
   if (!pkg) {
@@ -67,15 +67,15 @@ const PackageDetails = () => {
           <Star className="star-icon" size={20} fill="currentColor" />
           <span>4.9 Excelente</span>
           {isSoldOut && (
-              <span style={{ marginLeft: '1rem', background: '#dc3545', color: '#fff', padding: '0.2rem 0.8rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 'bold' }}>
-                  AGOTADO
-              </span>
+            <span style={{ marginLeft: '1rem', background: '#dc3545', color: '#fff', padding: '0.2rem 0.8rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 'bold' }}>
+              AGOTADO
+            </span>
           )}
         </div>
       </div>
 
       <div className="details-gallery">
-        <img src={`https://source.unsplash.com/1200x600/?${pkg.destination.replace(' ','+')}`} alt={pkg.name} className="main-image glass" style={{ opacity: isSoldOut ? 0.7 : 1 }}/>
+        <img src={`https://source.unsplash.com/1200x600/?${pkg.destination.replace(' ', '+')}`} alt={pkg.name} className="main-image glass" style={{ opacity: isSoldOut ? 0.7 : 1 }} />
       </div>
 
       <div className="details-content-grid">
@@ -84,20 +84,20 @@ const PackageDetails = () => {
           <p>{pkg.description}</p>
           <br />
           <p>
-            Prepárate para una aventura inolvidable. Explorarás <strong>{pkg.destination}</strong> ({pkg.tripType}) 
-            dentro de la categoría <strong>{pkg.category}</strong> durante la temporada de <strong>{pkg.season}</strong>.
-            Nuestro itinerario base comienza el <strong>{pkg.startDate.substring(0,10)}</strong> y culmina el <strong>{pkg.endDate.substring(0,10)}</strong>.
+            Prepárate para una aventura inolvidable. Explorarás <strong>{pkg.destination}</strong> ({pkg.tripType})
+            dentro de la categoría <strong>{pkg.category}</strong> durante la temporada <strong>{pkg.season}</strong>.
+            Nuestro itinerario base comienza el <strong>{pkg.startDate.substring(0, 10)}</strong> y culmina el <strong>{pkg.endDate.substring(0, 10)}</strong>.
           </p>
 
           <div className="includes-section">
             <h3>¿Qué está incluido?</h3>
             <ul className="includes-list">
               {pkg.includedServices && pkg.includedServices.length > 0 ? (
-                  pkg.includedServices.map((service, index) => (
-                      <li key={index}><CheckCircle2 size={18} className="check-icon" /> {service.replace('_', ' ')}</li>
-                  ))
+                pkg.includedServices.map((service, index) => (
+                  <li key={index}><CheckCircle2 size={18} className="check-icon" /> {service.replace('_', ' ')}</li>
+                ))
               ) : (
-                  <li>No hay servicios detallados aún.</li>
+                <li>No hay servicios detallados aún.</li>
               )}
             </ul>
           </div>
@@ -128,15 +128,15 @@ const PackageDetails = () => {
               <div className="feature-row">
                 <Users size={18} className="text-muted" />
                 <span>
-                    Cupos Disponibles: {pkg.availableSlots} / {pkg.totalSlots}
+                  Cupos Disponibles: {pkg.availableSlots} / {pkg.totalSlots}
                 </span>
               </div>
             </div>
 
-            <button 
-                className={`button w-full ${isSoldOut ? 'button-secondary' : 'button-primary pulse-animation'}`}
-                disabled={isSoldOut}
-                onClick={handleReserve}
+            <button
+              className={`button w-full ${isSoldOut ? 'button-secondary' : 'button-primary pulse-animation'}`}
+              disabled={isSoldOut}
+              onClick={handleReserve}
             >
               {isSoldOut ? 'No Disponible para Reservar' : 'Reservar Ahora'}
             </button>
