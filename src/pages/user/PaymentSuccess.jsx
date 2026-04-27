@@ -9,7 +9,7 @@ const PaymentSuccess = () => {
 
     if (!receipt) {
         return (
-            <div className="container" style={{padding:'5rem', textAlign:'center'}}>
+            <div className="container" style={{ padding: '5rem', textAlign: 'center' }}>
                 <h2>Voucher no encontrado</h2>
                 <button className="button button-primary" onClick={() => navigate('/my-reservations')}>Ir a mis reservas</button>
             </div>
@@ -27,22 +27,22 @@ const PaymentSuccess = () => {
 
                 <div className="voucher-details">
                     <div className="voucher-row">
-                        <span className="v-label"><Hash size={16}/> N° Transacción (Hash)</span>
-                        <span className="v-value monospace">{receipt.transactionHash}</span>
+                        <span className="v-label"><Hash size={16} /> N° Transacción:</span>
+                        <span className="v-value monospace" style={{ fontSize: '14px' }}>{receipt.transactionHash}</span>
                     </div>
                     <div className="voucher-row">
-                        <span className="v-label"><Calendar size={16}/> Fecha y Hora</span>
+                        <span className="v-label"><Calendar size={16} /> Fecha y Hora:</span>
                         <span className="v-value">{new Date(receipt.transactionDate).toLocaleString('es-CL')}</span>
                     </div>
                     <div className="voucher-row">
-                        <span className="v-label"><CreditCard size={16}/> Medio de Pago</span>
+                        <span className="v-label"><CreditCard size={16} /> Medio de Pago:</span>
                         <span className="v-value">{receipt.paymentMethod === 'CREDIT_CARD' ? 'Tarjeta de Crédito' : 'Tarjeta de Débito'}</span>
                     </div>
-                    
+
                     <div className="voucher-divider"></div>
-                    
+
                     <div className="voucher-row total-row">
-                        <span className="v-label"><DollarSign size={20}/> Monto Pagado</span>
+                        <span className="v-label"><DollarSign size={20} /> Monto Pagado:</span>
                         <span className="v-value gradient-text">${receipt.amountPaid.toLocaleString('es-CL')} CLP</span>
                     </div>
                 </div>

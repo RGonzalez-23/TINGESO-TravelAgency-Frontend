@@ -1,0 +1,162 @@
+.voucher-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.voucher-paper {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    box-sizing: border-box;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    color: #1e293b;
+    margin-bottom: 2rem;
+}
+
+.voucher-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 4px solid #2563eb;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand h2 {
+    color: #2563eb;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.voucher-title h1 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.voucher-status {
+    display: flex;
+    justify-content: space-between;
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.v-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.v-status-badge.confirmada {
+    background: #cad9f4;
+    color: #2563eb;
+}
+
+.v-status-badge.pagada {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.v-status-badge.pendiente {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.v-status-badge.cancelada {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.voucher-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.v-section h3 {
+    color: #334155;
+    border-bottom: 2px solid #cbd5e1;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.v-section p {
+    margin: 0.5rem 0;
+    color: #475569;
+}
+
+.v-finance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.v-finance-table td {
+    padding: 0.8rem;
+    border-bottom: 1px dashed #cbd5e1;
+}
+
+.v-finance-table tr td:last-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+.v-finance-total td {
+    font-size: 1.2rem;
+    color: #2563eb;
+    border-bottom: none;
+    border-top: 2px solid #2563eb;
+}
+
+.voucher-footer {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 1rem;
+}
+
+.print-controls {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .voucher-container {
+        padding: 0;
+    }
+
+    .voucher-paper {
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .hide-on-print {
+        display: none !important;
+    }
+}

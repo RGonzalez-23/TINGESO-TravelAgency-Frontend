@@ -10,8 +10,10 @@ import BookPackage from './pages/user/BookPackage';
 import Checkout from './pages/user/Checkout';
 import PaymentSuccess from './pages/user/PaymentSuccess';
 import MyReservations from './pages/user/MyReservations';
+import VoucherDocument from './pages/user/VoucherDocument';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminConfig from './pages/admin/AdminConfig';
+import AdminReservations from './pages/admin/AdminReservations';
 import './App.css';
 
 function RequireRole({ children, roles = [] }) {
@@ -52,9 +54,11 @@ function App() {
           <Route path="/checkout/:id" element={<RequireRole roles={["CLIENTE"]}><Checkout /></RequireRole>} />
           <Route path="/checkout/success/:id" element={<RequireRole roles={["CLIENTE"]}><PaymentSuccess /></RequireRole>} />
           <Route path="/my-reservations" element={<RequireRole roles={["CLIENTE"]}><MyReservations /></RequireRole>} />
+          <Route path="/receipt/:id" element={<RequireRole roles={["CLIENTE", "ADMIN"]}><VoucherDocument /></RequireRole>} />
           <Route path="/admin/dashboard" element={<RequireRole roles={["ADMIN"]}><AdminDashboard /></RequireRole>} />
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />
           <Route path="/admin/discounts" element={<RequireRole roles={["ADMIN"]}><AdminConfig /></RequireRole>} />
+          <Route path="/admin/reservations" element={<RequireRole roles={["ADMIN"]}><AdminReservations /></RequireRole>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

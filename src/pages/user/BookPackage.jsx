@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
 import api from '../../http-common';
 import { ArrowLeft, Users, FileText, HeartHandshake } from 'lucide-react';
 import './css/BookPackage.css';
@@ -14,9 +15,38 @@ const BookPackage = () => {
   const [preferences, setPreferences] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const { keycloak, initialized } = useKeycloak();
+
   useEffect(() => {
     api.get(`/api/packages/${id}`).then(res => setPkg(res.data)).catch(console.error);
   }, [id]);
+
+  useEffect(() => {
+    if (initialized && keycloak?.authenticated) {
+      const token = keycloak.tokenParsed;
+      // Keycloak saves standard firstName as given_name, and custom attributes directly un-nested if configured or under custom claims
+      const firstName = token.given_name || token.preferred_username;
+      const firstLastName = token.first_last_name || "";
+      const secondLastName = token.second_last_name || "";
+
+      // Assemble the full name based on the custom attributes you specified
+      let fullName = `${firstName} ${firstLastName} ${secondLastName}`.trim().replace(/\s+/g, ' ');
+
+      // Fallback just in case those attributes don't exist
+      if (!fullName) {
+        fullName = token?.name || token?.preferred_username || '';
+      }
+
+      setPassengers(prev => {
+        const newArr = [...prev];
+        // Only auto-fill if it's completely empty during initialization
+        if (!newArr[0].fullName && fullName) {
+          newArr[0].fullName = fullName;
+        }
+        return newArr;
+      });
+    }
+  }, [initialized, keycloak]);
 
   const handlePassengerCountChange = (e) => {
     const count = parseInt(e.target.value) || 1;
@@ -52,7 +82,7 @@ const BookPackage = () => {
     }
   };
 
-  if (!pkg) return <div className="container" style={{padding:'5rem'}}>Cargando...</div>;
+  if (!pkg) return <div className="container" style={{ padding: '5rem' }}>Cargando...</div>;
 
   return (
     <div className="book-package-container container fade-in-up">
@@ -67,7 +97,7 @@ const BookPackage = () => {
 
       <form onSubmit={handleSubmit} className="book-form glass-card">
         <div className="form-group row-group">
-          <label><Users size={18}/> Cantidad de Pasajeros (Max {pkg.availableSlots})</label>
+          <label><Users size={18} /> Cantidad de Pasajeros (Max {pkg.availableSlots})</label>
           <input type="number" min="1" max={pkg.availableSlots} value={passengersCount} onChange={handlePassengerCountChange} required className="pass-input" />
         </div>
 
@@ -93,10 +123,10 @@ const BookPackage = () => {
         </div>
 
         <div className="extra-info-section">
-          <label><FileText size={18}/> Solicitudes Especiales (Opcional)</label>
+          <label><FileText size={18} /> Solicitudes Especiales (Opcional)</label>
           <textarea placeholder="Dietas, alergias, requerimientos de ubicación..." value={specialRequests} onChange={e => setSpecialRequests(e.target.value)} />
-          
-          <label><HeartHandshake size={18}/> Preferencias del Cliente (Opcional)</label>
+
+          <label><HeartHandshake size={18} /> Preferencias del Cliente (Opcional)</label>
           <textarea placeholder="Cama matrimonial, piso alto, vistas..." value={preferences} onChange={e => setPreferences(e.target.value)} />
         </div>
 

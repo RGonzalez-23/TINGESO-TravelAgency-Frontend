@@ -39,7 +39,7 @@ const AdminConfig = () => {
         <div className="admin-config-container container fade-in-up">
             <div className="admin-header">
                 <Settings size={32} className="header-icon" />
-                <h1>Motor de Descuentos (Administración)</h1>
+                <h1>Motor de Descuentos</h1>
                 <p>Las reglas que alteres aquí entrarán en vigencia inmediatamente para la siguiente compra.</p>
             </div>
 

@@ -124,7 +124,7 @@ const Checkout = () => {
                         {reservation.discountPercentage > 0 && (
                             <div className="invoice-row discount-row">
                                 <span>Descuentos ({reservation.discountPercentage}% off):<br /><small>{reservation.appliedDiscountsDetails}</small></span>
-                                <strong>- ${(reservation.totalAmount - reservation.finalAmount).toLocaleString('es-CL')}</strong>
+                                <strong>-${(reservation.totalAmount - reservation.finalAmount).toLocaleString('es-CL')}</strong>
                             </div>
                         )}
 

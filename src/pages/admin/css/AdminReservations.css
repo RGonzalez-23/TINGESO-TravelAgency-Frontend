@@ -1,0 +1,107 @@
+.admin-header {
+    color: #ffffff;
+}
+
+.admin-reservations-page {
+    margin-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+
+.admin-table td {
+    padding: 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.admin-table th {
+    background: rgba(241, 245, 249, 0.5);
+    color: #2563eb;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 8 rem;
+    letter-spacing: 0.05em;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+.admin-table tr:hover {
+    background: rgb(255, 255, 255);
+    color: #2563eb;
+}
+
+.actions-cluster {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status-badge.confirmada {
+    background: #cad9f4;
+    color: #2563eb;
+}
+
+.status-badge.pagada {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.pendiente {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.status-badge.cancelada {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-view {
+    color: #3b82f6;
+    background: #eff6ff;
+}
+
+.btn-view:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-confirm {
+    color: #10b981;
+    background: #ecfdf5;
+}
+
+.btn-confirm:hover {
+    background: #10b981;
+    color: white;
+}
+
+.btn-cancel {
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+.btn-cancel:hover {
+    background: #ef4444;
+    color: white;
+}
