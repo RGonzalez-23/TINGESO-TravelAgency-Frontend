@@ -94,7 +94,7 @@ const MyReservations = () => {
                       )}
                       {(res.status === 'PAGADA' || res.status === 'CONFIRMADA') && (
                         <button className="button button-outline" style={{ color: '#2563eb', backgroundColor: '#ffffffff' }} onClick={(e) => { e.stopPropagation(); window.open(`/receipt/${res.id}`, '_blank'); }}>
-                          Descargar Comprobante/Voucher
+                          Descargar Comprobante
                         </button>
                       )}
                     </div>
