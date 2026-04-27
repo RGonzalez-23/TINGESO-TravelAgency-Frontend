@@ -86,7 +86,7 @@ const PackageDetails = () => {
           <p>
             Prepárate para una aventura inolvidable. Explorarás <strong>{pkg.destination}</strong> ({pkg.tripType})
             dentro de la categoría <strong>{pkg.category}</strong> durante la temporada <strong>{pkg.season}</strong>.
-            Nuestro itinerario base comienza el <strong>{pkg.startDate.substring(0, 10)}</strong> y culmina el <strong>{pkg.endDate.substring(0, 10)}</strong>.
+            Nuestro itinerario base comienza el <strong>{pkg.startDate.substring(0, 10).split('-').reverse().join('-')}</strong> y culmina el <strong>{pkg.endDate.substring(0, 10).split('-').reverse().join('-')}</strong>.
           </p>
 
           <div className="includes-section">

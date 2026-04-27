@@ -14,6 +14,7 @@ import VoucherDocument from './pages/user/VoucherDocument';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminConfig from './pages/admin/AdminConfig';
 import AdminReservations from './pages/admin/AdminReservations';
+import AdminReports from './pages/admin/AdminReports';
 import './App.css';
 
 function RequireRole({ children, roles = [] }) {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />
           <Route path="/admin/discounts" element={<RequireRole roles={["ADMIN"]}><AdminConfig /></RequireRole>} />
           <Route path="/admin/reservations" element={<RequireRole roles={["ADMIN"]}><AdminReservations /></RequireRole>} />
+          <Route path="/admin/reports" element={<RequireRole roles={["ADMIN"]}><AdminReports /></RequireRole>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

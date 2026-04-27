@@ -1,0 +1,44 @@
+.admin-reports-page {
+    margin-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.reports-controls {
+    margin-bottom: 3rem;
+    padding: 2.5rem;
+}
+
+.date-picker-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.date-picker-group .form-group {
+    flex: 1;
+}
+
+.checkbox-group {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(241, 245, 249, 0.6);
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+}
+
+.reports-results {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.report-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* We reuse .admin-table from AdminReservations.css natively because it's global inside Vite via root or we just rely on its injection */

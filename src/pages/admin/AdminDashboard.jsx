@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { PackageSearch, PercentDiamond, LayoutDashboard, Bookmark } from 'lucide-react';
+import { PackageSearch, PercentDiamond, LayoutDashboard, Bookmark, FileBarChart } from 'lucide-react';
 import './css/AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -33,6 +33,13 @@ const AdminDashboard = () => {
                     <h2>Gestión de Reservas</h2>
                     <p>Supervisa, cancela o confirma el historial de reservas activas emitidas en la plataforma.</p>
                     <button className="button button-outline mt-3">Ver Reservas</button>
+                </div>
+
+                <div className="dashboard-module glass-card bounce-on-hover" onClick={() => navigate('/admin/reports')}>
+                    <FileBarChart size={64} className="module-icon" style={{ color: '#8b5cf6' }} />
+                    <h2>Visor de Reportes</h2>
+                    <p>Accede a estadísticas consolidadas, rankings de ventas y operaciones financieras de la agencia.</p>
+                    <button className="button button-outline mt-3">Generar Reportes</button>
                 </div>
             </div>
         </div>

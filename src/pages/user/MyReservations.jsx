@@ -74,8 +74,8 @@ const MyReservations = () => {
                   <div className="expanded-details fade-in-up" style={{ marginTop: '1.5rem', background: 'rgba(255,255,255,0.4)', padding: '1rem', borderRadius: '12px' }}>
                     <hr style={{ margin: '0.5rem 0', borderColor: 'rgba(0,0,0,0.1)' }} />
                     <p><strong>Destino:</strong> {res.destination}</p>
-                    <p><strong>Inicio Tramo:</strong> {res.startDate?.substring(0, 10)}</p>
-                    <p><strong>Fin Tramo:</strong> {res.endDate?.substring(0, 10)}</p>
+                    <p><strong>Inicio Tramo:</strong> {res.startDate?.substring(0, 10).split('-').reverse().join('-')}</p>
+                    <p><strong>Fin Tramo:</strong> {res.endDate?.substring(0, 10).split('-').reverse().join('-')}</p>
 
                     <h5 style={{ marginTop: '1rem', color: '#334155' }}>Pasajeros Registrados:</h5>
                     <ul style={{ fontSize: '0.9rem', color: '#475569', paddingLeft: '1.2rem' }}>

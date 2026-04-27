@@ -85,8 +85,8 @@ const VoucherDocument = () => {
                         <h3>Detalles del Viaje</h3>
                         <p><strong>Paquete:</strong> {res.packageName}</p>
                         <p><strong>Destino Aprox.:</strong> {res.destination}</p>
-                        <p><strong>Desde:</strong> {res.startDate?.substring(0, 10)}</p>
-                        <p><strong>Hasta:</strong> {res.endDate?.substring(0, 10)}</p>
+                        <p><strong>Desde:</strong> {res.startDate?.substring(0,10).split('-').reverse().join('-')}</p>
+                        <p><strong>Hasta:</strong> {res.endDate?.substring(0,10).split('-').reverse().join('-')}</p>
                     </div>
 
                     <div className="v-section">
