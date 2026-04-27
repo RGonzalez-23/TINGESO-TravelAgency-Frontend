@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../../http-common';
-import { Settings, Save } from 'lucide-react';
+import { Settings, Save, Megaphone } from 'lucide-react';
 import './css/AdminConfig.css';
 
 const AdminConfig = () => {
+    const navigate = useNavigate();
     const [config, setConfig] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -37,10 +39,15 @@ const AdminConfig = () => {
 
     return (
         <div className="admin-config-container container fade-in-up">
-            <div className="admin-header">
-                <Settings size={32} className="header-icon" />
-                <h1>Motor de Descuentos</h1>
-                <p>Las reglas que alteres aquí entrarán en vigencia inmediatamente para la siguiente compra.</p>
+            <div className="admin-header" style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+                <div>
+                    <Settings size={32} className="header-icon" />
+                    <h1>Motor de Descuentos</h1>
+                    <p>Las reglas que alteres aquí entrarán en vigencia inmediatamente para la siguiente compra.</p>
+                </div>
+                <button className="button button-outline bounce-on-hover" onClick={() => navigate('/admin/promotions')} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'white'}}>
+                    <Megaphone size={18} /> Gestionar Promociones Temporales
+                </button>
             </div>
 
             <div className="config-form glass-card">

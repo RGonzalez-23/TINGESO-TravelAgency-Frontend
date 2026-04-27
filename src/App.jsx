@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useKeycloak } from '@react-keycloak/web';
+import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -15,6 +16,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminConfig from './pages/admin/AdminConfig';
 import AdminReservations from './pages/admin/AdminReservations';
 import AdminReports from './pages/admin/AdminReports';
+import AdminPromotions from './pages/admin/AdminPromotions';
 import './App.css';
 
 function RequireRole({ children, roles = [] }) {
@@ -45,6 +47,7 @@ function HomeWrapper() {
 function App() {
   return (
     <div className="app-container">
+      <ScrollToTop />
       <Navbar />
       <main className="main-content">
         <Routes>
@@ -59,6 +62,7 @@ function App() {
           <Route path="/admin/dashboard" element={<RequireRole roles={["ADMIN"]}><AdminDashboard /></RequireRole>} />
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />
           <Route path="/admin/discounts" element={<RequireRole roles={["ADMIN"]}><AdminConfig /></RequireRole>} />
+          <Route path="/admin/promotions" element={<RequireRole roles={["ADMIN"]}><AdminPromotions /></RequireRole>} />
           <Route path="/admin/reservations" element={<RequireRole roles={["ADMIN"]}><AdminReservations /></RequireRole>} />
           <Route path="/admin/reports" element={<RequireRole roles={["ADMIN"]}><AdminReports /></RequireRole>} />
           <Route path="*" element={<Navigate to="/" replace />} />
