@@ -90,10 +90,16 @@ const AdminPackages = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const payload = {
+        ...formData,
+        startDate: formData.startDate.includes('T') ? formData.startDate : formData.startDate + 'T00:00:00',
+        endDate: formData.endDate.includes('T') ? formData.endDate : formData.endDate + 'T00:00:00'
+      };
+
       if (isEditing) {
-        await api.put(`/api/packages/${currentId}`, formData);
+        await api.put(`/api/packages/${currentId}`, payload);
       } else {
-        await api.post('/api/packages', formData);
+        await api.post('/api/packages', payload);
       }
 
       alert(isEditing ? '¡Paquete actualizado!' : '¡Paquete creado!');

@@ -39,13 +39,13 @@ const AdminConfig = () => {
 
     return (
         <div className="admin-config-container container fade-in-up">
-            <div className="admin-header" style={{display:'flex', justifyContent:'space-between', alignItems:'center'}}>
+            <div className="admin-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                     <Settings size={32} className="header-icon" />
                     <h1>Motor de Descuentos</h1>
                     <p>Las reglas que alteres aquí entrarán en vigencia inmediatamente para la siguiente compra.</p>
                 </div>
-                <button className="button button-outline bounce-on-hover" onClick={() => navigate('/admin/promotions')} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'white'}}>
+                <button className="button button-outline bounce-on-hover" onClick={() => navigate('/admin/promotions')} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'white', color: '#2563eb' }}>
                     <Megaphone size={18} /> Gestionar Promociones Temporales
                 </button>
             </div>

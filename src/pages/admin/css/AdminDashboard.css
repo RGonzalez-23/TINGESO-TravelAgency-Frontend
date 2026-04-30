@@ -3,13 +3,16 @@
     padding-bottom: 5rem;
     text-align: center;
 }
+
 .dashboard-header {
     margin-bottom: 4rem;
 }
+
 .gradient-icon {
     color: #2563eb;
     margin-bottom: 1rem;
 }
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -17,6 +20,7 @@
     max-width: 900px;
     margin: 0 auto;
 }
+
 .dashboard-module {
     padding: 3rem 2rem;
     display: flex;
@@ -26,24 +30,37 @@
     transition: all 0.3s ease;
     border: 2px solid transparent;
 }
+
+
 .dashboard-module:hover {
     border-color: #2563eb;
-    box-shadow: 0 15px 35px rgba(37,99,235,0.15);
+    box-shadow: 0 15px 35px rgba(241, 242, 243, 0.15);
+    background-color: #0f1442;
 }
+
 .module-icon {
     margin-bottom: 1.5rem;
 }
-.text-primary { color: #2563eb; }
-.text-success { color: #10b981; }
+
+.text-primary {
+    color: #2563eb;
+}
+
+.text-success {
+    color: #10b981;
+}
+
 .dashboard-module h2 {
     margin-bottom: 1rem;
-    color: #1e293b;
+    color: #e3e8ef;
 }
+
 .dashboard-module p {
     color: #64748b;
     margin-bottom: 1.5rem;
     flex-grow: 1;
 }
+
 .mt-3 {
     margin-top: 1rem;
 }
