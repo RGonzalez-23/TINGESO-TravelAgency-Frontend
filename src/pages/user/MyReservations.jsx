@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../../http-common';
-import { Ticket, CheckCircle2, XCircle, Clock } from 'lucide-react';
+import { Ticket, CheckCircle2, XCircle, Clock, ClockAlert } from 'lucide-react';
 import './css/MyReservations.css';
 
 const MyReservations = () => {
@@ -29,10 +29,22 @@ const MyReservations = () => {
     }
   };
 
+  const handleCancel = async (id) => {
+    if (window.confirm("¿Estás seguro de que deseas cancelar esta reserva?")) {
+      try {
+        await api.put(`/api/reservations/${id}/status`, { newStatus: 'CANCELADA' });
+        fetchMyReservations();
+      } catch (err) {
+        alert("Error al cancelar: " + (err.response?.data || err.message));
+      }
+    }
+  };
+
   const getStatusIcon = (status) => {
     switch (status) {
       case 'PAGADA': return <CheckCircle2 className="status-icon success" />;
       case 'CANCELADA': return <XCircle className="status-icon error" />;
+      case 'EXPIRADA': return <ClockAlert className="status-icon expired" />;
       case 'PENDIENTE': return <Clock className="status-icon pending" />;
       case 'CONFIRMADA': return <Ticket className="status-icon neutral" />;
       default: return <Ticket className="status-icon neutral" />;
@@ -95,6 +107,11 @@ const MyReservations = () => {
                       {(res.status === 'PAGADA' || res.status === 'CONFIRMADA') && (
                         <button className="button button-outline" style={{ color: '#2563eb', backgroundColor: '#ffffffff' }} onClick={(e) => { e.stopPropagation(); window.open(`/receipt/${res.id}`, '_blank'); }}>
                           Descargar Comprobante
+                        </button>
+                      )}
+                      {(res.status !== 'CANCELADA' && res.status !== 'EXPIRADA') && (
+                        <button className="button button-outline" style={{ color: '#dc2626', borderColor: '#dc2626', backgroundColor: '#ffffffff' }} onClick={(e) => { e.stopPropagation(); handleCancel(res.id); }}>
+                          Cancelar Reserva
                         </button>
                       )}
                     </div>

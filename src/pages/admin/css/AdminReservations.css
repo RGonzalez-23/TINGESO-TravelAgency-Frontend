@@ -21,7 +21,7 @@
 }
 
 .admin-table th {
-    background: rgba(241, 245, 249, 0.5);
+    background: rgb(255, 255, 255);
     color: #2563eb;
     font-weight: 600;
     text-transform: uppercase;
@@ -35,7 +35,7 @@
 
 
 .admin-table tr:hover {
-    background: rgb(255, 255, 255);
+    background: rgb(211, 206, 206);
     color: #2563eb;
 }
 
@@ -62,6 +62,11 @@
 .status-badge.cancelada {
     background: #fee2e2;
     color: #dc2626;
+}
+
+.status-badge.expirada {
+    background: #dc2626;
+    color: #fee2e2;
 }
 
 .icon-btn {

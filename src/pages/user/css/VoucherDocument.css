@@ -83,6 +83,11 @@
     color: #dc2626;
 }
 
+.v-status-badge.expirada {
+    background: #dc2626;
+    color: #fee2e2;
+}
+
 .voucher-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from '../../http-common';
-import { Search, Eye, XCircle, CheckCircle, Clock, TicketCheck } from 'lucide-react';
+import { Search, Eye, XCircle, CheckCircle, Clock, TicketCheck, ClockAlert } from 'lucide-react';
 import './css/AdminReservations.css';
 
 const AdminReservations = () => {
@@ -33,6 +33,7 @@ const AdminReservations = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'PAGADA': return <CheckCircle className="status-icon success" size={16} />;
+      case 'EXPIRADA': return <ClockAlert className="status-icon expired" size={16} />;
       case 'CONFIRMADA': return <TicketCheck className="status-icon success" size={16} />;
       case 'CANCELADA': return <XCircle className="status-icon error" size={16} />;
       case 'PENDIENTE': return <Clock className="status-icon pending" size={16} />;

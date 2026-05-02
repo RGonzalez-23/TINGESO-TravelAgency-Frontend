@@ -81,6 +81,17 @@ a {
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
+.button-secondary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.button-secondary:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgb(255, 255, 255);
+}
+
 .button-outline {
   border: 1px solid black;
   color: black;

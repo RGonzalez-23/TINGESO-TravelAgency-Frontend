@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../http-common';
-import { Compass, Clock, Ticket, Printer, CheckCircle2, XCircle } from 'lucide-react';
+import { Compass, Clock, Ticket, Printer, CheckCircle2, XCircle, ClockAlert } from 'lucide-react';
 import './css/VoucherDocument.css'; // Will be created next
 
 const VoucherDocument = () => {
@@ -72,6 +72,7 @@ const VoucherDocument = () => {
                             {res.status === 'CONFIRMADA' ? <Ticket size={16} /> : null}
                             {res.status === 'PAGADA' ? <CheckCircle2 size={16} /> : null}
                             {res.status === 'CANCELADA' ? <XCircle size={16} /> : null}
+                            {res.status === 'EXPIRADA' ? <ClockAlert size={16} /> : null}
                             {res.status}
                         </span>
                     </div>
@@ -85,8 +86,8 @@ const VoucherDocument = () => {
                         <h3>Detalles del Viaje</h3>
                         <p><strong>Paquete:</strong> {res.packageName}</p>
                         <p><strong>Destino Aprox.:</strong> {res.destination}</p>
-                        <p><strong>Desde:</strong> {res.startDate?.substring(0,10).split('-').reverse().join('-')}</p>
-                        <p><strong>Hasta:</strong> {res.endDate?.substring(0,10).split('-').reverse().join('-')}</p>
+                        <p><strong>Desde:</strong> {res.startDate?.substring(0, 10).split('-').reverse().join('-')}</p>
+                        <p><strong>Hasta:</strong> {res.endDate?.substring(0, 10).split('-').reverse().join('-')}</p>
                     </div>
 
                     <div className="v-section">

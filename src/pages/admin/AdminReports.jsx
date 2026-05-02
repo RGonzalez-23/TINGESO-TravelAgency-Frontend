@@ -49,6 +49,8 @@ const AdminReports = () => {
                 if (!includeCancelled) return false;
                 operationDateObj = new Date(r.createdAt);
             } else if (r.status === 'PENDIENTE') {
+                return false; // Not paid yet
+            } else if (r.status === 'EXPIRADA') {
                 return false; // Never paid and not cancelled
             } else {
                 if (!r.paidAt) return false;
@@ -63,6 +65,7 @@ const AdminReports = () => {
             passengersCount: r.passengersCount,
             totalAmount: r.totalAmount,
             finalAmount: r.finalAmount,
+            paymentMethod: r.paymentMethod,
             status: r.status
         })).sort((a, b) => new Date(b.operationDate) - new Date(a.operationDate));
 
@@ -154,6 +157,7 @@ const AdminReports = () => {
                                         <th>Cant. Pasajeros</th>
                                         <th>Monto Total (Reserva)</th>
                                         <th>Monto Pagado (Final)</th>
+                                        <th>Medio de Pago</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -163,9 +167,10 @@ const AdminReports = () => {
                                             <td>{new Date(r.operationDate).toLocaleString('es-CL')}</td>
                                             <td>{r.clientName}</td>
                                             <td>{r.packageName}</td>
-                                            <td>{r.passengersCount} pax</td>
+                                            <td>{r.passengersCount} pas.</td>
                                             <td>${r.totalAmount.toLocaleString('es-CL')}</td>
                                             <td><strong>${r.finalAmount.toLocaleString('es-CL')}</strong></td>
+                                            <td>{r.paymentMethod}</td>
                                             <td>
                                                 <span className={`status-badge ${r.status.toLowerCase()}`}>
                                                     {r.status}
@@ -173,7 +178,7 @@ const AdminReports = () => {
                                             </td>
                                         </tr>
                                     )) : (
-                                        <tr><td colSpan="7" style={{ textAlign: 'center', padding: '2rem' }}>No hubieron operaciones en este periodo de tiempo.</td></tr>
+                                        <tr><td colSpan="8" style={{ textAlign: 'center', padding: '2rem' }}>No hubieron operaciones en este periodo de tiempo.</td></tr>
                                     )}
                                 </tbody>
                             </table>
@@ -200,7 +205,7 @@ const AdminReports = () => {
                                             <td><strong style={{ color: '#2563eb' }}>#{idx + 1}</strong></td>
                                             <td><strong>{p.packageName}</strong></td>
                                             <td>{p.qtyReservations} reservas</td>
-                                            <td>{p.totalPassengers} pax</td>
+                                            <td>{p.totalPassengers} pas.</td>
                                             <td style={{ color: '#10b981', fontWeight: 'bold' }}>${p.totalRevenue.toLocaleString('es-CL')}</td>
                                         </tr>
                                     )) : (
