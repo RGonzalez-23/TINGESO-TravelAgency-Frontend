@@ -10,9 +10,9 @@ const VoucherDocument = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Obtenemos solo la de me() y la filtramos para simplificar. 
-        // Si el admin tambiên requiere ver el voucher, podría usar /all
-        // Haremos un fetch a /api/reservations/me e intersecamos. Si no, usamos all.
+        // We get only from me() and filter it to simplify. 
+        // If the admin also needs to see the voucher, they could use /all
+        // We will fetch /api/reservations/me and intersect. Otherwise, we use all.
         const fetchReceipt = async () => {
             try {
                 // To support both ADMIN and CLIENT without complex endpoints,

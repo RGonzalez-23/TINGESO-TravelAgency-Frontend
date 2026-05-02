@@ -66,7 +66,7 @@ const AdminPackages = () => {
     setCurrentId(pkg.id);
     setFormData({
       ...pkg,
-      startDate: pkg.startDate.substring(0, 10), // Asegurar formato YYYY-MM-DD
+      startDate: pkg.startDate.substring(0, 10), // Ensure format YYYY-MM-DD
       endDate: pkg.endDate.substring(0, 10)
     });
     setIsModalOpen(true);
@@ -164,7 +164,7 @@ const AdminPackages = () => {
           <div className="modal-content glass fade-in">
             <h2>{isEditing ? 'Editar' : 'Crear'} <span className="text-gradient">Paquete</span></h2>
             <form onSubmit={handleSubmit} className="admin-form">
-              {/* Mismo contenido del formulario anterior ... */}
+              {/* Same content from previous form ... */}
               <div className="form-grid">
                 <div className="form-group full-width">
                   <label>Nombre del Paquete</label>

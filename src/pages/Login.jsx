@@ -26,9 +26,9 @@ const Login = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Login exitoso:", data);
-        // Aquí normalmente guardaremos el token. Por ahora solo informamos éxito.
+        // Here we will normally save the token. For now we just inform success.
         alert("¡Login exitoso! Bienvenido " + data.user.fullName);
-        navigate('/'); // Redirigir al inicio
+        navigate('/'); // Redirect to home
       } else {
         const errorMsg = await response.text();
         setError(errorMsg || 'Credenciales incorrectas');

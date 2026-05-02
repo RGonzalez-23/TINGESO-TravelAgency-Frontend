@@ -9,9 +9,9 @@ const Checkout = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Obtenemos la reserva devuelta por POST /api/reservations (El state de React Router)
+    // Get the reservation returned by POST /api/reservations (React Router state)
     const [reservation, setReservation] = useState(location.state?.reservation || null);
-    const [timeLeft, setTimeLeft] = useState(180); // 3 minutos = 180 segundos
+    const [timeLeft, setTimeLeft] = useState(180); // 3 minutes = 180 seconds
     const [expired, setExpired] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -29,8 +29,8 @@ const Checkout = () => {
     };
 
     useEffect(() => {
-        // En producción se buscaría al backend si no existe en local, 
-        // pero para seguir el flujo de Epic 4 lo tomamos del push inmediato.
+        // In production we would search the backend if it doesn't exist locally, 
+        // but to follow the Epic 4 flow we take it from the immediate push.
         if (!reservation) {
             alert("No hay reserva activa en el contexto");
             navigate('/packages');
@@ -62,7 +62,7 @@ const Checkout = () => {
 
         setLoading(true);
         try {
-            // El backend recibe el payload, simula validación y guarda transacción devolviendo el voucher
+            // The backend receives the payload, simulates validation and saves transaction returning the voucher
             const response = await api.post(`/api/reservations/${id}/pay`, cardData);
             navigate(`/checkout/success/${id}`, { state: { receipt: response.data } });
         } catch (err) {

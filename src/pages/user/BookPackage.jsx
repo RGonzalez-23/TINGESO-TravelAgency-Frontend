@@ -74,7 +74,7 @@ const BookPackage = () => {
     try {
       const payload = { tourPackageId: id, passengersCount, passengers, specialRequests, preferences };
       const response = await api.post('/api/reservations', payload);
-      // Navegamos al Checkout pasando completo el ticket de la reserva (que incluye los descuentos calculados)
+      // Navigate to Checkout passing the full reservation ticket (which includes the calculated discounts)
       navigate(`/checkout/${response.data.id}`, { state: { reservation: response.data } });
     } catch (err) {
       alert(err.response?.data || "Error al crear reserva");

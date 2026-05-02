@@ -19,7 +19,7 @@ const Register = () => {
   const validate = () => {
     const newErrors = {};
 
-    // Validar contraseña
+    // Validate password
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,}$/;
     if (!formData.password) {
       newErrors.password = 'La contraseña es obligatoria';
@@ -27,7 +27,7 @@ const Register = () => {
       newErrors.password = 'Debe tener min. 12 caracteres, mayúscula, minúscula, número y un carácter especial';
     }
 
-    // Validar formato chileno (+569XXXXXXXX o 9XXXXXXXX)
+    // Validate Chilean format (+569XXXXXXXX or 9XXXXXXXX)
     if (formData.phone) {
       const phoneRegex = /^(\+?56)?9\d{8}$/;
       if (!phoneRegex.test(formData.phone)) {
@@ -35,7 +35,7 @@ const Register = () => {
       }
     }
 
-    // Validar correos
+    // Validate emails
     if (!formData.email) {
       newErrors.email = 'El correo electrónico es obligatorio';
     }
@@ -71,7 +71,7 @@ const Register = () => {
             password: '', phone: '', rut: '', nacionalidad: ''
           });
         } else {
-          // Capturar el error arrojado por el backend (ej. "El correo ya existe")
+          // Capture error thrown by the backend (e.g. "Email already exists")
           const errorMsg = await response.text();
           setErrors({ form: errorMsg || 'Error al registrar' });
         }

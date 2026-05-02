@@ -11,7 +11,7 @@
     margin-bottom: 2rem;
   }
 
-  /* Tabla de paquetes */
+  /* Packages table */
   .packages-table-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -38,7 +38,7 @@
     font-weight: 600;
   }
 
-  /* Modal Formulario */
+  /* Form Modal */
   .modal-overlay {
     position: fixed;
     top: 0;

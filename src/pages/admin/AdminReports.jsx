@@ -42,14 +42,14 @@ const AdminReports = () => {
         }
         setErrorMsg('');
 
-        // --- Primer reporte (Visión cronológica) ---
+        // --- First report (Chronological view) ---
         const rep1 = reservations.filter(r => {
             let operationDateObj;
             if (r.status === 'CANCELADA') {
                 if (!includeCancelled) return false;
                 operationDateObj = new Date(r.createdAt);
             } else if (r.status === 'PENDIENTE') {
-                return false; // Nunca se pagó y no está cancelada
+                return false; // Never paid and not cancelled
             } else {
                 if (!r.paidAt) return false;
                 operationDateObj = new Date(r.paidAt);
@@ -68,7 +68,7 @@ const AdminReports = () => {
 
         setReport1(rep1);
 
-        // --- Segundo reporte (Ranking de ventas) ---
+        // --- Second report (Sales ranking) ---
         const validReservations = reservations.filter(r => {
             if (r.status === 'CANCELADA' || r.status === 'PENDIENTE') return false;
             if (!r.paidAt) return false;
@@ -92,7 +92,7 @@ const AdminReports = () => {
             packageMap[r.packageId].totalRevenue += r.finalAmount;
         });
 
-        // Se ordenará por número de reservas de mayor a menor, el criterio de desempate será el monto total vendido.
+        // Sorted by number of reservations from highest to lowest, tie-breaker is total amount sold.
         const rep2 = Object.values(packageMap).sort((a, b) => {
             if (b.qtyReservations !== a.qtyReservations) return b.qtyReservations - a.qtyReservations;
             return b.totalRevenue - a.totalRevenue;

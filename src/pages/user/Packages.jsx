@@ -25,7 +25,7 @@ const Packages = () => {
 
   const categories = ['AVENTURA', 'RELAX', 'CULTURAL', 'FAMILIAR', 'ROMANTICO', 'NEGOCIOS', 'DEPORTIVO'];
 
-  // Cargar paquetes al montar el componente (sin filtros = devuelve todos los válidos)
+  // Load packages on component mount (no filters = returns all valid ones)
   useEffect(() => {
     fetchPackages(filters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,7 +87,7 @@ const Packages = () => {
         )}
       </div>
 
-      {/* Barra de bśsqueda general */}
+      {/* General search bar */}
       <form className="filters-bar glass" onSubmit={handleSearch}>
         <div className="search-input-group" style={{ flex: 1 }}>
           <Search size={20} className="search-icon" />
@@ -106,7 +106,7 @@ const Packages = () => {
         <button type="submit" className="button button-primary">Buscar</button>
       </form>
 
-      {/* Panel de filtros avanzados (Acordeón) */}
+      {/* Advanced filters panel (Accordion) */}
       {showFilters && (
         <div className="advanced-filters glass fade-in" style={{ padding: '2rem', marginTop: '1rem', borderRadius: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
 
@@ -165,7 +165,7 @@ const Packages = () => {
         </div>
       )}
 
-      {/* Rejilla de Paquetes */}
+      {/* Packages Grid */}
       {loading ? (
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
           <h3>Buscando aventuras...</h3>
