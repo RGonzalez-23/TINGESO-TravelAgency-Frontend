@@ -1,8 +1,7 @@
 import { ArrowRight, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useKeycloak } from '@react-keycloak/web';
-import PackageCard from '../components/PackageCard';
-import { PACKAGES } from '../data/mockData';
+// import PackageCard from '../components/PackageCard';
 import './Home.css';
 
 const Home = () => {
@@ -60,11 +59,11 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="packages-grid">
+        {/* <div className="packages-grid">
           {PACKAGES.map((pkg) => (
             <PackageCard key={pkg.id} item={pkg} />
           ))}
-        </div>
+        </div> */}
       </section>
 
       <section className="features-section container">
