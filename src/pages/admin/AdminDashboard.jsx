@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { PackageSearch, PercentDiamond, LayoutDashboard, Bookmark, FileBarChart } from 'lucide-react';
+import { PackageSearch, PercentDiamond, LayoutDashboard, Bookmark, FileBarChart, UserPen } from 'lucide-react';
 import './css/AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -40,6 +40,13 @@ const AdminDashboard = () => {
                     <h2>Visor de Reportes</h2>
                     <p>Accede a estadísticas consolidadas, rankings de ventas y operaciones financieras de la agencia.</p>
                     <button className="button button-outline mt-3">Generar Reportes</button>
+                </div>
+
+                <div className="dashboard-module glass-card bounce-on-hover" onClick={() => navigate('/admin/users')}>
+                    <UserPen size={64} className="module-icon" style={{ color: '#06b6d4' }} />
+                    <h2>Gestión de Usuarios</h2>
+                    <p>Lista y edita los perfiles de CLIENTES y ADMINs directamente desde el panel de administración.</p>
+                    <button className="button button-outline mt-3">Ir a Usuarios</button>
                 </div>
             </div>
         </div>

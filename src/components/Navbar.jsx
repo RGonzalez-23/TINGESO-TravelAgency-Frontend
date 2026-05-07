@@ -32,6 +32,9 @@ const Navbar = () => {
           )}
           <Link to="/packages" className={`nav-link ${location.pathname.startsWith('/packages') ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Paquetes</Link>
           <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>Nosotros</a>
+          {initialized && keycloak && keycloak.authenticated && (
+            <Link to="/profile" className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Perfil</Link>
+          )}
           {initialized && keycloak && (keycloak.tokenParsed?.realm_access?.roles || []).includes('CLIENTE') && (
             <Link to="/my-reservations" className={`nav-link ${location.pathname === '/my-reservations' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Mis Reservas</Link>
           )}

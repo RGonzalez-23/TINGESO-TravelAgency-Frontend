@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Packages from './pages/user/Packages';
 import PackageDetails from './pages/user/PackageDetails';
 import AdminPackages from './pages/admin/AdminPackages';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminUserEdit from './pages/admin/AdminUserEdit';
 import BookPackage from './pages/user/BookPackage';
 import Checkout from './pages/user/Checkout';
 import PaymentSuccess from './pages/user/PaymentSuccess';
@@ -17,6 +19,7 @@ import AdminConfig from './pages/admin/AdminConfig';
 import AdminReservations from './pages/admin/AdminReservations';
 import AdminReports from './pages/admin/AdminReports';
 import AdminPromotions from './pages/admin/AdminPromotions';
+import Profile from './pages/user/Profile';
 import './App.css';
 
 function RequireRole({ children, roles = [] }) {
@@ -59,8 +62,11 @@ function App() {
           <Route path="/checkout/success/:id" element={<RequireRole roles={["CLIENTE"]}><PaymentSuccess /></RequireRole>} />
           <Route path="/my-reservations" element={<RequireRole roles={["CLIENTE"]}><MyReservations /></RequireRole>} />
           <Route path="/receipt/:id" element={<RequireRole roles={["CLIENTE", "ADMIN"]}><VoucherDocument /></RequireRole>} />
+          <Route path="/profile" element={<RequireRole roles={["CLIENTE","ADMIN"]}><Profile /></RequireRole>} />
           <Route path="/admin/dashboard" element={<RequireRole roles={["ADMIN"]}><AdminDashboard /></RequireRole>} />
           <Route path="/admin/packages" element={<RequireRole roles={["ADMIN"]}><AdminPackages /></RequireRole>} />
+          <Route path="/admin/users" element={<RequireRole roles={["ADMIN"]}><AdminUsers /></RequireRole>} />
+          <Route path="/admin/users/:id" element={<RequireRole roles={["ADMIN"]}><AdminUserEdit /></RequireRole>} />
           <Route path="/admin/discounts" element={<RequireRole roles={["ADMIN"]}><AdminConfig /></RequireRole>} />
           <Route path="/admin/promotions" element={<RequireRole roles={["ADMIN"]}><AdminPromotions /></RequireRole>} />
           <Route path="/admin/reservations" element={<RequireRole roles={["ADMIN"]}><AdminReservations /></RequireRole>} />
