@@ -123,7 +123,9 @@ const PackageDetails = () => {
               </div>
               <div className="feature-row">
                 <Calendar size={18} className="text-muted" />
-                <span>{pkg.durationDays} Días / {pkg.durationDays - 1} Noches</span>
+                {pkg.durationDays === 2 ? 
+                (<span>{pkg.durationDays} Días / {pkg.durationDays - 1} Noche</span>) : 
+                (<span>{pkg.durationDays} Días / {pkg.durationDays - 1} Noches</span>)}
               </div>
               <div className="feature-row">
                 <Users size={18} className="text-muted" />
