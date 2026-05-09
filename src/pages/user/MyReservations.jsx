@@ -7,6 +7,11 @@ const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState(null);
+  const [showInactive, setShowInactive] = useState(false);
+
+  const visibleReservations = showInactive 
+    ? reservations 
+    : reservations.filter(res => res.status !== 'CANCELADA' && res.status !== 'EXPIRADA');
 
   const fetchMyReservations = () => {
     setLoading(true);
@@ -67,9 +72,29 @@ const MyReservations = () => {
           <p>Explora nuestros paquetes turísticos y comienza tu aventura.</p>
         </div>
       ) : (
-        <div className="reservations-grid">
-          {reservations.map(res => (
-            <div key={res.id} className="reservation-card glass-card" style={{ cursor: 'pointer' }} onClick={() => setExpandedId(expandedId === res.id ? null : res.id)}>
+        <>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1.5rem', alignItems: 'center', gap: '0.5rem' }}>
+            <input 
+              type="checkbox" 
+              id="showInactive" 
+              checked={showInactive} 
+              onChange={(e) => setShowInactive(e.target.checked)} 
+              style={{ transform: 'scale(1.2)', cursor: 'pointer' }} 
+            />
+            <label htmlFor="showInactive" style={{ cursor: 'pointer', color: '#f1f1f1', fontWeight: '600' }}>
+              Incluir historial de reservas no válidas (Canceladas/Expiradas)
+            </label>
+          </div>
+          
+          <div className="reservations-grid">
+            {visibleReservations.length === 0 ? (
+               <div className="empty-state glass-card" style={{ gridColumn: '1 / -1' }}>
+                 <h3>No hay reservas activas</h3>
+                 <p>Activa la casilla superior para ver tu historial completo de intentos cancelados.</p>
+               </div>
+            ) : (
+              visibleReservations.map(res => (
+                <div key={res.id} className="reservation-card glass-card" style={{ cursor: 'pointer' }} onClick={() => setExpandedId(expandedId === res.id ? null : res.id)}>
               <div className="card-header">
                 <h3>{res.packageName}</h3>
                 <span className={`status-badge ${res.status.toLowerCase()}`}>
@@ -136,8 +161,10 @@ const MyReservations = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+            ))
+            )}
+          </div>
+        </>
       )}
     </div>
   );
