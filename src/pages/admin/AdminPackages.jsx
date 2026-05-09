@@ -30,7 +30,7 @@ const AdminPackages = () => {
     'VUELOS', 'HOTEL', 'TRASLADOS', 'EXCURSIONES', 'SEGURO_MEDICO', 'ALIMENTACION', 'ASISTENCIA_GUIA'
   ];
 
-  const seasons = ['ALTA', 'BAJA', 'VERANO', 'INVIERNO', 'OTONO', 'PRIMAVERA'];
+  const seasons = ['ALTA', 'BAJA', 'VERANO', 'INVIERNO', 'OTOÑO', 'PRIMAVERA'];
   const categories = ['AVENTURA', 'RELAX', 'CULTURAL', 'FAMILIAR', 'ROMANTICO', 'NEGOCIOS', 'DEPORTIVO'];
   const tripTypes = ['NACIONAL', 'INTERNACIONAL'];
   const statuses = ['DISPONIBLE', 'AGOTADO', 'NO_VIGENTE', 'CANCELADO'];

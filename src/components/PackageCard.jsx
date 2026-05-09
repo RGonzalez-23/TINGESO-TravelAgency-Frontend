@@ -36,7 +36,7 @@ const PackageCard = ({ item }) => {
           </div>
           <div className="feature">
             <Calendar size={16} />
-            <span>{item.durationDays} Días</span>
+            {item.durationDays === 2 ? (<span>{item.durationDays} Días / {item.durationDays - 1} Noche</span>) : (<span>{item.durationDays} Días / {item.durationDays - 1} Noches</span>)}
           </div>
           <div className="feature">
             <Users size={16} />

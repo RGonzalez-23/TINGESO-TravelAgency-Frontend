@@ -123,12 +123,18 @@ const PackageDetails = () => {
               </div>
               <div className="feature-row">
                 <Calendar size={18} className="text-muted" />
-                <span>{pkg.durationDays} Días Totales</span>
+                <span>{pkg.durationDays} Días / {pkg.durationDays - 1} Noches</span>
               </div>
               <div className="feature-row">
                 <Users size={18} className="text-muted" />
                 <span>
-                  Cupos Disponibles: {pkg.availableSlots} / {pkg.totalSlots}
+                  {pkg.availableSlots < 3 ? (
+                    <span style={{ color: '#dc3545', fontWeight: 'bold' }}>
+                      ¡Últimos cupos disponibles!
+                    </span>
+                  ) : (
+                    `Cupos Disponibles: ${pkg.availableSlots} / ${pkg.totalSlots}`
+                  )}
                 </span>
               </div>
             </div>
