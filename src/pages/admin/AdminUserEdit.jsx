@@ -123,7 +123,11 @@ const AdminUserEdit = () => {
             <label>Nacionalidad</label>
             <input className="form-input" value={form.nacionalidad} onChange={e => handleChange('nacionalidad', e.target.value)} />
             <label>
-              <input type="checkbox" checked={form.enabled} onChange={e => handleChange('enabled', e.target.checked)} /> Habilitado
+              <input type="checkbox" 
+              checked={form.enabled} 
+              onChange={e => handleChange('enabled', e.target.checked)}
+              disabled={form.isAdmin}
+              style={form.isAdmin ? { backgroundColor: '#7f7e7e', cursor: 'not-allowed', color: '#3b3b3b' } :{}} /> Habilitado
             </label>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button className="button button-primary" type="submit">Guardar</button>

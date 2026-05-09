@@ -70,6 +70,7 @@ const AdminUsers = () => {
                   <th>Nombre</th>
                   <th>Email</th>
                   <th>Administrador</th>
+                  <th>Cuenta Activa</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -83,12 +84,15 @@ const AdminUsers = () => {
                       <td style={{ textAlign: 'center' }}>
                         {isAdmin ? 'Sí' : 'No'}
                       </td>
+                      <td style={{ textAlign: 'center' }}>
+                        {u.enabled ? 'Sí' : 'No'}
+                      </td>
                       <td style={{ textAlign: 'center' }}>  
                        <Link to={`/admin/users/${u.id}`} className="button button-outline">Editar</Link>
                       </td>
                     </tr>
                 )})}
-                {users.length === 0 && <tr><td colSpan="4">No se encontraron usuarios.</td></tr>}
+                {users.length === 0 && <tr><td colSpan="5">No se encontraron usuarios.</td></tr>}
               </tbody>
             </table>
           )}
