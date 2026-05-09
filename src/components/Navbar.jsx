@@ -31,7 +31,6 @@ const Navbar = () => {
               <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Inicio</Link>
           )}
           <Link to="/packages" className={`nav-link ${location.pathname.startsWith('/packages') ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Paquetes</Link>
-          <a href="#about" className="nav-link" onClick={() => setIsOpen(false)}>Nosotros</a>
           {initialized && keycloak && keycloak.authenticated && (
             <Link to="/profile" className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`} onClick={() => setIsOpen(false)}>Perfil</Link>
           )}

@@ -25,17 +25,15 @@ const Footer = () => {
           <ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="/packages">Paquetes</a></li>
-            <li><a href="#about">Sobre Nosotros</a></li>
-            <li><a href="#contact">Contacto</a></li>
           </ul>
         </div>
 
         <div className="footer-col">
           <h3>Contacto</h3>
           <ul>
-            <li>Email: info@travelagency.com</li>
-            <li>Tel: +1 234 567 890</li>
-            <li>Dirección: Av. Principal 123, Ciudad</li>
+            <li>Email: info@travelagency.cl</li>
+            <li>Teléfono: 600 666 6767</li>
+            <li>Dirección: Av. Apoquindo 1312 ,Las Condes, Santiago de Chile</li>
           </ul>
         </div>
       </div>
