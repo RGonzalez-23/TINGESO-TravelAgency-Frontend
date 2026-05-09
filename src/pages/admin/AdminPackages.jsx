@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './css/AdminPackages.css';
 import api from '../../http-common';
+import { Package, MapPin, DollarSign, Calendar, Users, Plane, Sun, Compass, AlignLeft, ListChecks, FileText, AlertTriangle, Activity, Eye } from 'lucide-react';
 
 const AdminPackages = () => {
   const [packages, setPackages] = useState([]);
@@ -160,75 +161,75 @@ const AdminPackages = () => {
       )}
 
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content glass fade-in">
-            <h2>{isEditing ? 'Editar' : 'Crear'} <span className="text-gradient">Paquete</span></h2>
+        <div className="modal-overlay fade-in">
+          <div className="modal-content glass-card" style={{ maxWidth: '900px', background: 'rgba(255, 255, 255, 0.95)', color: '#0f172a' }}>
+            <h2 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1e293b' }}>{isEditing ? 'Editar' : 'Crear'} <span className="text-gradient">Paquete Turístico</span></h2>
             <form onSubmit={handleSubmit} className="admin-form">
-              {/* Same content from previous form ... */}
-              <div className="form-grid">
-                <div className="form-group full-width">
-                  <label>Nombre del Paquete</label>
-                  <input className="form-input" name="name" value={formData.name} onChange={handleInputChange} required />
+              <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="form-group full-width" style={{ gridColumn: 'span 2' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Package size={16} /> Nombre del Paquete</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="name" value={formData.name} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Destino</label>
-                  <input className="form-input" name="destination" value={formData.destination} onChange={handleInputChange} required />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><MapPin size={16} /> Destino</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="destination" value={formData.destination} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Precio (CLP)</label>
-                  <input className="form-input" type="number" name="price" value={formData.price} onChange={handleInputChange} required />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><DollarSign size={16} /> Precio (CLP)</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} type="number" name="price" value={formData.price} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Fecha de Inicio</label>
-                  <input className="form-input" type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} required />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Calendar size={16} /> Fecha de Inicio</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} type="date" name="startDate" value={formData.startDate} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Fecha de Término</label>
-                  <input className="form-input" type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} required />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Calendar size={16} /> Fecha de Término</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} type="date" name="endDate" value={formData.endDate} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Cupos Totales</label>
-                  <input className="form-input" type="number" name="totalSlots" value={formData.totalSlots} onChange={handleInputChange} required />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Users size={16} /> Cupos Totales</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} type="number" name="totalSlots" value={formData.totalSlots} onChange={handleInputChange} required />
                 </div>
 
                 <div className="form-group">
-                  <label>Tipo de Viaje</label>
-                  <select className="form-input" name="tripType" value={formData.tripType} onChange={handleInputChange}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Plane size={16} /> Tipo de Viaje</label>
+                  <select className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="tripType" value={formData.tripType} onChange={handleInputChange}>
                     {tripTypes.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label>Temporada</label>
-                  <select className="form-input" name="season" value={formData.season} onChange={handleInputChange}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Sun size={16} /> Temporada</label>
+                  <select className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="season" value={formData.season} onChange={handleInputChange}>
                     {seasons.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label>Categoría</label>
-                  <select className="form-input" name="category" value={formData.category} onChange={handleInputChange}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Compass size={16} /> Categoría</label>
+                  <select className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="category" value={formData.category} onChange={handleInputChange}>
                     {categories.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
 
-                <div className="form-group full-width">
-                  <label>Descripción detallada</label>
-                  <textarea className="form-input" name="description" value={formData.description} onChange={handleInputChange} required rows="3"></textarea>
+                <div className="form-group full-width" style={{ gridColumn: 'span 2' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><AlignLeft size={16} /> Descripción detallada</label>
+                  <textarea className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="description" value={formData.description} onChange={handleInputChange} required rows="3"></textarea>
                 </div>
 
-                <div className="form-group full-width">
-                  <label>Servicios Incluidos</label>
-                  <div className="services-selection">
+                <div className="form-group full-width" style={{ gridColumn: 'span 2' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><ListChecks size={16} /> Servicios Incluidos</label>
+                  <div className="services-selection" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.8rem', padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                     {availableServices.map(service => (
-                      <label key={service} className="service-item">
+                      <label key={service} className="service-item" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', color: '#334155', fontWeight: '500' }}>
                         <input
                           type="checkbox"
+                          style={{ transform: 'scale(1.2)' }}
                           checked={formData.includedServices.includes(service)}
                           onChange={() => handleServiceChange(service)}
                         />
@@ -239,31 +240,31 @@ const AdminPackages = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Condiciones</label>
-                  <input className="form-input" name="conditions" value={formData.conditions} onChange={handleInputChange} />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><FileText size={16} /> Condiciones</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="conditions" value={formData.conditions} onChange={handleInputChange} />
                 </div>
 
                 <div className="form-group">
-                  <label>Restricciones</label>
-                  <input className="form-input" name="restrictions" value={formData.restrictions} onChange={handleInputChange} />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><AlertTriangle size={16} /> Restricciones</label>
+                  <input className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="restrictions" value={formData.restrictions} onChange={handleInputChange} />
                 </div>
 
                 <div className="form-group">
-                  <label>Estado</label>
-                  <select className="form-input" name="status" value={formData.status} onChange={handleInputChange}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Activity size={16} /> Estado</label>
+                  <select className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} name="status" value={formData.status} onChange={handleInputChange}>
                     {statuses.map(s => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
 
-                <div className="form-group service-item">
-                  <label>Visible al Cliente</label>
-                  <input type="checkbox" name="isVisible" checked={formData.isVisible} onChange={handleInputChange} />
+                <div className="form-group service-item" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '2.5rem' }}>
+                  <input type="checkbox" style={{ transform: 'scale(1.5)', cursor: 'pointer' }} name="isVisible" checked={formData.isVisible} onChange={handleInputChange} />
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600', color: '#1e293b', margin: 0 }}><Eye size={16} /> Visible al Cliente</label>
                 </div>
               </div>
 
-              <div className="button-group">
-                <button type="button" className="button" onClick={() => setIsModalOpen(false)}>Cancelar</button>
-                <button type="submit" className="button button-primary">Guardar Paquete</button>
+              <div className="modal-actions" style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '2.5rem' }}>
+                <button type="button" className="button button-outline" style={{ color: '#475569', borderColor: '#cbd5e1', backgroundColor: '#f8fafc' }} onClick={() => setIsModalOpen(false)}>Cancelar</button>
+                <button type="submit" className="button button-primary">{isEditing ? 'Guardar Cambios' : 'Crear Paquete'}</button>
               </div>
             </form>
           </div>
