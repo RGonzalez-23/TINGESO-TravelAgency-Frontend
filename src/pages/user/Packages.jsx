@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PackageCard from '../../components/PackageCard';
-import { Search, Filter, X } from 'lucide-react';
+import { Search, Filter, X, DollarSign, Calendar, Clock, Compass, Plane } from 'lucide-react';
 import { useKeycloak } from '@react-keycloak/web';
 import { Link } from 'react-router-dom';
 import api from '../../http-common';
@@ -108,57 +108,57 @@ const Packages = () => {
 
       {/* Advanced filters panel (Accordion) */}
       {showFilters && (
-        <div className="advanced-filters glass fade-in" style={{ padding: '2rem', marginTop: '1rem', borderRadius: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <div className="advanced-filters glass-card fade-in" style={{ padding: '2rem', marginTop: '1.5rem', borderRadius: '16px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', background: 'rgba(255, 255, 255, 0.95)', color: '#0f172a', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
 
           <div className="filter-group">
-            <label>Precio Mínimo (CLP)</label>
-            <input type="number" name="minPrice" className="form-input" value={filters.minPrice} onChange={handleInputChange} placeholder="0" />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><DollarSign size={16} /> Precio Mínimo</label>
+            <input type="number" name="minPrice" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.minPrice} onChange={handleInputChange} placeholder="0" />
           </div>
 
           <div className="filter-group">
-            <label>Precio Máximo (CLP)</label>
-            <input type="number" name="maxPrice" className="form-input" value={filters.maxPrice} onChange={handleInputChange} placeholder="9000000" />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><DollarSign size={16} /> Precio Máximo</label>
+            <input type="number" name="maxPrice" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.maxPrice} onChange={handleInputChange} placeholder="9000000" />
           </div>
 
           <div className="filter-group">
-            <label>Desde Fecha</label>
-            <input type="date" name="dateFrom" className="form-input" value={filters.dateFrom} onChange={handleInputChange} />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Calendar size={16} /> Desde Fecha</label>
+            <input type="date" name="dateFrom" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.dateFrom} onChange={handleInputChange} />
           </div>
 
           <div className="filter-group">
-            <label>Hasta Fecha</label>
-            <input type="date" name="dateTo" className="form-input" value={filters.dateTo} onChange={handleInputChange} />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Calendar size={16} /> Hasta Fecha</label>
+            <input type="date" name="dateTo" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.dateTo} onChange={handleInputChange} />
           </div>
 
           <div className="filter-group">
-            <label>Duración Mín. (Días)</label>
-            <input type="number" name="minDuration" className="form-input" value={filters.minDuration} onChange={handleInputChange} placeholder="0" />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Clock size={16} /> Duración Mín. (Días)</label>
+            <input type="number" name="minDuration" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.minDuration} onChange={handleInputChange} placeholder="0" />
           </div>
 
           <div className="filter-group">
-            <label>Duración Máx. (Días)</label>
-            <input type="number" name="maxDuration" className="form-input" value={filters.maxDuration} onChange={handleInputChange} placeholder="30" />
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Clock size={16} /> Duración Máx. (Días)</label>
+            <input type="number" name="maxDuration" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.maxDuration} onChange={handleInputChange} placeholder="30" />
           </div>
 
           <div className="filter-group">
-            <label>Tipo de Experiencia</label>
-            <select name="category" className="form-input" value={filters.category} onChange={handleInputChange}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Compass size={16} /> Tipo de Experiencia</label>
+            <select name="category" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.category} onChange={handleInputChange}>
               <option value="">Cualquiera</option>
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </div>
 
           <div className="filter-group">
-            <label>Tipo de Viaje</label>
-            <select name="tripType" className="form-input" value={filters.tripType} onChange={handleInputChange}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', fontWeight: '600', color: '#1e293b' }}><Plane size={16} /> Tipo de Viaje</label>
+            <select name="tripType" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #cbd5e1', background: '#ffffff', color: '#0f172a' }} value={filters.tripType} onChange={handleInputChange}>
               <option value="">Cualquiera</option>
               <option value="NACIONAL">Nacional</option>
               <option value="INTERNACIONAL">Internacional</option>
             </select>
           </div>
 
-          <div className="filter-group" style={{ display: 'flex', alignItems: 'flex-end' }}>
-            <button type="button" className="button button-secondary" onClick={handleClearFilters} style={{ width: '100%' }}>
+          <div className="filter-group" style={{ display: 'flex', alignItems: 'flex-end', gridColumn: '1 / -1', marginTop: '1rem', justifyContent: 'flex-end' }}>
+            <button type="button" className="button button-outline" onClick={handleClearFilters} style={{ color: '#dc2626', borderColor: '#dc2626', background: 'transparent', padding: '0.8rem 2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <X size={16} /> Limpiar Filtros
             </button>
           </div>
