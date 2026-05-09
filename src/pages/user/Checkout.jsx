@@ -19,7 +19,8 @@ const Checkout = () => {
     const [cardData, setCardData] = useState({
         cardHolderName: '',
         cardNumber: '',
-        expiryDate: '',
+        expiryMonth: '',
+        expiryYear: '',
         cvv: '',
         paymentMethod: 'CREDIT_CARD'
     });
@@ -58,7 +59,8 @@ const Checkout = () => {
         // Validation required by Epic 5
         if (cardData.cardNumber.length !== 16) return alert("Formato de número de tarjeta inválido (requiere 16 dígitos)");
         if (cardData.cvv.length !== 3) return alert("CVV inválido (requiere 3 dígitos)");
-        if (!cardData.cardHolderName || !cardData.expiryDate) return alert("Debe completar todos los datos para pagar");
+        if (cardData.expiryMonth.length !== 2 || cardData.expiryYear.length !== 2) return alert("Formato de fecha de expiración inválido (MM/AA)");
+        if (!cardData.cardHolderName) return alert("Debe completar todos los datos para pagar");
 
         setLoading(true);
         try {
@@ -136,7 +138,7 @@ const Checkout = () => {
                         </div>
 
                         <div className="payment-gateway-form" style={{ marginTop: '2rem', marginBottom: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1e293b' }}>Datos de Tarjeta (Medio Simulado)</h3>
+                            <h3 style={{ marginTop: 0, marginBottom: '1.5rem', color: '#1e293b' }}>Datos de Tarjeta</h3>
 
                             <div className="form-group" style={{ marginBottom: '1rem' }}>
                                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Medio de Pago</label>
@@ -152,14 +154,16 @@ const Checkout = () => {
                             </div>
 
                             <div className="form-group" style={{ marginBottom: '1rem' }}>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Número de Tarjeta (16 dígitos)</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Número de Tarjeta</label>
                                 <input type="text" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc', letterSpacing: '2px' }} name="cardNumber" maxLength="16" placeholder="0000 0000 0000 0000" value={cardData.cardNumber} onChange={handleInput} required />
                             </div>
 
                             <div style={{ display: 'flex', gap: '1rem' }}>
                                 <div className="form-group" style={{ flex: 1 }}>
-                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Expiración</label>
-                                    <input type="text" className="form-input" style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="expiryDate" placeholder="12/28" value={cardData.expiryDate} onChange={handleInput} required />
+                                    <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>Fecha de Expiración</label>
+                                    <input type="text" className="form-input" style={{ width: '20%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="expiryMonth" placeholder="12" maxLength="2"value={cardData.expiryMonth} onChange={handleInput} required />
+                                    {'  /  '} 
+                                    <input type="text" className="form-input" style={{ width: '20%', padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }} name="expiryYear" placeholder="28" maxLength="2"value={cardData.expiryYear} onChange={handleInput} required />
                                 </div>
                                 <div className="form-group" style={{ flex: 1 }}>
                                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '600' }}>CVV</label>
