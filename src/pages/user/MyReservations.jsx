@@ -98,14 +98,14 @@ const MyReservations = () => {
                       ))}
                     </ul>
 
-                    <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                       {res.status === 'PAGADA' && (
                         <button className="button button-primary" onClick={(e) => { e.stopPropagation(); handleConfirm(res.id); }}>
                           Confirmar Mi Viaje
                         </button>
                       )}
                       {(res.status === 'PAGADA' || res.status === 'CONFIRMADA') && (
-                        <button className="button button-outline" style={{ color: '#2563eb', backgroundColor: '#ffffffff' }} onClick={(e) => { e.stopPropagation(); window.open(`/receipt/${res.id}`, '_blank'); }}>
+                        <button className="button button-outline" style={{ color: '#2563eb', backgroundColor: '#ffffffff', borderColor: '#2563eb' }} onClick={(e) => { e.stopPropagation(); window.open(`/receipt/${res.id}`, '_blank'); }}>
                           Descargar Comprobante
                         </button>
                       )}
