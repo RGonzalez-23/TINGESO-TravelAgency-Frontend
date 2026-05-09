@@ -150,11 +150,11 @@ const AdminReports = () => {
                         <div className="table-responsive" style={{ marginTop: '1.5rem' }}>
                             <table className="admin-table">
                                 <thead>
-                                    <tr>
-                                        <th>Fecha Operación</th>
+                                    <tr style={{fontSize: '0.95rem'}}>
+                                        <th>Fecha de Operación</th>
                                         <th>Cliente Asociado</th>
                                         <th>Paquete Turístico</th>
-                                        <th>Cant. Pasajeros</th>
+                                        <th>Cantidad de Pasajeros</th>
                                         <th>Monto Total (Reserva)</th>
                                         <th>Monto Pagado (Final)</th>
                                         <th>Medio de Pago</th>
@@ -164,14 +164,14 @@ const AdminReports = () => {
                                 <tbody>
                                     {report1.length > 0 ? report1.map(r => (
                                         <tr key={r.id}>
-                                            <td>{new Date(r.operationDate).toLocaleString('es-CL')}</td>
-                                            <td>{r.clientName}</td>
-                                            <td>{r.packageName}</td>
-                                            <td>{r.passengersCount} pas.</td>
-                                            <td>${r.totalAmount.toLocaleString('es-CL')}</td>
-                                            <td><strong>${r.finalAmount.toLocaleString('es-CL')}</strong></td>
-                                            <td>{r.paymentMethod}</td>
-                                            <td>
+                                            <td style={{ textAlign: 'center' }}>{new Date(r.operationDate).toLocaleString('es-CL')}</td>
+                                            <td style={{ textAlign: 'center' }}>{r.clientName}</td>
+                                            <td style={{ textAlign: 'center' }}>{r.packageName}</td>
+                                            <td style={{ textAlign: 'center' }}>{r.passengersCount} pas.</td>
+                                            <td style={{ textAlign: 'center' }}>${r.totalAmount.toLocaleString('es-CL')}</td>
+                                            <td style={{ textAlign: 'center' }}><strong>${r.finalAmount.toLocaleString('es-CL')}</strong></td>
+                                            <td style={{ textAlign: 'center' }}>{r.paymentMethod === 'CREDIT_CARD' ? 'Crédito' : 'Débito'}</td>
+                                            <td style={{ textAlign: 'center' }}>
                                                 <span className={`status-badge ${r.status.toLowerCase()}`}>
                                                     {r.status}
                                                 </span>
@@ -192,21 +192,21 @@ const AdminReports = () => {
                             <table className="admin-table">
                                 <thead>
                                     <tr>
-                                        <th># Rank</th>
+                                        <th># Ranking</th>
                                         <th>Paquete Turístico</th>
-                                        <th>Cant. Reservas</th>
-                                        <th>Total Pasajeros</th>
+                                        <th>Cantidad de Reservas</th>
+                                        <th>Total de Pasajeros</th>
                                         <th>Monto Generado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {report2.length > 0 ? report2.map((p, idx) => (
                                         <tr key={p.packageId}>
-                                            <td><strong style={{ color: '#2563eb' }}>#{idx + 1}</strong></td>
-                                            <td><strong>{p.packageName}</strong></td>
-                                            <td>{p.qtyReservations} reservas</td>
-                                            <td>{p.totalPassengers} pas.</td>
-                                            <td style={{ color: '#10b981', fontWeight: 'bold' }}>${p.totalRevenue.toLocaleString('es-CL')}</td>
+                                            <td style={{ textAlign: 'center' }}><strong style={{ color: '#2563eb' }}>#{idx + 1}</strong></td>
+                                            <td style={{ textAlign: 'center' }}><strong>{p.packageName}</strong></td>
+                                            <td style={{ textAlign: 'center' }}>{p.qtyReservations} reservas</td>
+                                            <td style={{ textAlign: 'center' }}>{p.totalPassengers} pas.</td>
+                                            <td style={{ textAlign: 'center', color: '#10b981', fontWeight: 'bold' }}>${p.totalRevenue.toLocaleString('es-CL')}</td>
                                         </tr>
                                     )) : (
                                         <tr><td colSpan="5" style={{ textAlign: 'center', padding: '2rem' }}>No hay ventas válidas en este periodo para rankear.</td></tr>
