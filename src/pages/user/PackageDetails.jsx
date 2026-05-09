@@ -143,10 +143,10 @@ const PackageDetails = () => {
 
             <button
               className={`button w-full ${isSoldOut ? 'button-secondary' : 'button-primary pulse-animation'}`}
-              disabled={isSoldOut}
+              disabled={isSoldOut || pkg.status === 'NO_VIGENTE' || pkg.status === 'CANCELADO'}
               onClick={handleReserve}
             >
-              {isSoldOut ? 'No Disponible para Reservar' : 'Reservar Ahora'}
+              {isSoldOut || pkg.status === 'NO_VIGENTE' || pkg.status === 'CANCELADO' ? 'No Disponible para Reservar' : 'Reservar Ahora'}
             </button>
             <p className="booking-note">Datos actualizados al segundo exacto según la central de disponibilidad.</p>
           </div>
