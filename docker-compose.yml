@@ -5,6 +5,8 @@ services:
     image: travel-frontend:latest
     networks:
       - shared_travel_net
+    deploy:
+      replicas: 3
 
   nginx:
     image: nginx:alpine
@@ -19,7 +21,6 @@ services:
       - shared_travel_net
 
 networks:
-  # El frontend asume que esta red ya fue creada por el Docker Compose del Backend
   shared_travel_net:
     external: true
     name: travel_network
